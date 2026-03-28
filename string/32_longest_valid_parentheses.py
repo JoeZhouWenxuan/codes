@@ -30,6 +30,22 @@ class Solution:
                     ans = max(ans, i - stack[-1])
 
         return ans
+    
+    def f(self, s: str) -> int:
+        stack = [-1]
+        ans = 0
+        for i, ch in enumerate(s):
+            if ch == '(':
+                stack.append(i)
+            else:
+                stack.pop() # 因为这里pop操作，所以stack初始-1这个值
+                if not stack:
+                    stack.append(i)
+                else:
+                    ans = max(ans, i - stack[-1])
+        return ans
+
+
 
 
 if __name__ == "__main__":

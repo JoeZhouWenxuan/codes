@@ -26,6 +26,46 @@ class Solution:
 
         return ans
 
+    def lengthOfLongestSubstring2(self, s: str) -> int:
+        last_seen = {}
+        ans = 0
+        left = 0
+
+        for i, x in enumerate(s):
+            '''
+            举个最典型的例子：abba
+                我们一步一步看：
+
+                i = 0, x = 'a'
+
+                last_seen 里没有 a
+                窗口是 "a"
+                left = 0
+                i = 1, x = 'b'
+
+                last_seen 里没有 b
+                窗口是 "ab"
+                left = 0
+                i = 2, x = 'b'
+
+                b in last_seen，而且 last_seen['b'] = 1 >= left(0)
+                说明这个旧的 b 还在当前窗口 "ab" 里
+                所以要把 left 移到 1 + 1 = 2
+                新窗口变成 "b"
+                i = 3, x = 'a'
+
+                a in last_seen，last_seen['a'] = 0
+                但这时 left = 2
+                所以 0 >= 2 不成立
+
+            '''
+            if x in last_seen and last_seen[x] >= left: # 举个例子
+                left = last_seen[x] + 1
+            last_seen[x] = i
+            ans = max(ans, i - left + 1)
+
+        return ans
+
 
 if __name__ == "__main__":
     s = Solution()

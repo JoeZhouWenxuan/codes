@@ -30,6 +30,26 @@ class Solution:
 
         return not stack
 
+    def isValid(self, s):
+        stack = []
+        match = {
+            '(': ')',
+            '[': ']',
+            '{': '}'
+        }
+        for x in s:
+            if x in match:
+                stack.append(match[x])
+            else:
+                if not stack or stack[-1] != x:
+                    return False
+                stack.pop()
+            
+        return not stack
+
+                    
+
+
 
 if __name__ == "__main__":
     s = Solution()
