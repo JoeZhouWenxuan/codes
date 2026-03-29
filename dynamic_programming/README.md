@@ -17,4 +17,5 @@
 - [300_Longest_Increasing_Subsequence.py](/Users/bytedance/Documents/codes/dynamic_programming/300_Longest_Increasing_Subsequence.py)
 - [322_Coin_Change.py](/Users/bytedance/Documents/codes/dynamic_programming/322_Coin_Change.py)
 - [416_Partition_Equal_Subset_Sum.py](/Users/bytedance/Documents/codes/dynamic_programming/416_Partition_Equal_Subset_Sum.py)
+- [494_Target_Sum.py](/Users/bytedance/Documents/codes/dynamic_programming/494_Target_Sum.py)
 - [1143_Longest_Common_Subsequence.py](/Users/bytedance/Documents/codes/dynamic_programming/1143_Longest_Common_Subsequence.py)

@@ -16,18 +16,16 @@ class Solution:
         total = sum(nums)
         if total % 2 != 0:
             return False
-
         target = total // 2
-        dp = [False] * (target + 1)
-        dp[0] = True
+        # dp[i] 是否可以恰好凑出和 i
+        dp = [True] + [False] * target
 
         for num in nums:
-            for j in range(target, num - 1, -1):
-                dp[j] = dp[j] or dp[j - num]
+            for total in range(target, num - 1, -1):
+                dp[total] = dp[total] or dp[total-num]
 
-        return dp[target]
-
-
+        return dp[-1]
+        
 if __name__ == "__main__":
     s = Solution()
     print(s.canPartition([1, 5, 11, 5]))  # True

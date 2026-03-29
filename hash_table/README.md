@@ -14,5 +14,6 @@
 - [242_Valid_Anagram.py](/Users/bytedance/Documents/codes/hash_table/242_Valid_Anagram.py)
 - [347_Top_K_Frequent_Elements.py](/Users/bytedance/Documents/codes/hash_table/347_Top_K_Frequent_Elements.py)
 - [383_Ransom_Note.py](/Users/bytedance/Documents/codes/hash_table/383_Ransom_Note.py)
+- [448_Find_All_Numbers_Disappeared_in_an_Array.py](/Users/bytedance/Documents/codes/hash_table/448_Find_All_Numbers_Disappeared_in_an_Array.py)
 - [438_Find_All_Anagrams_in_a_String.py](/Users/bytedance/Documents/codes/hash_table/438_Find_All_Anagrams_in_a_String.py)
 - [560_Subarray_Sum_Equals_K.py](/Users/bytedance/Documents/codes/hash_table/560_Subarray_Sum_Equals_K.py)
