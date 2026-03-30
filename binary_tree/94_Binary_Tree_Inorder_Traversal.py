@@ -33,20 +33,31 @@ class Solution:
         return res
 
     def inorderTraversalIterative(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
+        # res = []
+        # stack = []
+        # current = root
+
+        # while current or stack:
+        #     while current:
+        #         stack.append(current)
+        #         current = current.left
+
+        #     current = stack.pop()
+        #     res.append(current.val)
+        #     current = current.right
+
+        # return res
+        ans = []
         stack = []
-        current = root
-
-        while current or stack:
-            while current:
-                stack.append(current)
-                current = current.left
-
-            current = stack.pop()
-            res.append(current.val)
-            current = current.right
-
-        return res
+        curr = root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            ans.append(curr.val)
+            curr = curr.right
+        return ans
 
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = []
@@ -62,21 +73,33 @@ class Solution:
         return res
 
     def preorderTraversalIterative(self, root: Optional[TreeNode]) -> List[int]:
+        # if not root:
+        #     return []
+
+        # res = []
+        # stack = [root]
+        # while stack:
+        #     node = stack.pop()
+        #     res.append(node.val)
+        #     if node.right:
+        #         stack.append(node.right)
+        #     if node.left:
+        #         stack.append(node.left)
+
+        # return res
         if not root:
             return []
-
-        res = []
         stack = [root]
+        ans = []
         while stack:
             node = stack.pop()
-            res.append(node.val)
+            ans.append(node.val)
             if node.right:
                 stack.append(node.right)
             if node.left:
                 stack.append(node.left)
-
-        return res
-
+        return ans
+    
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         res = []
 
@@ -91,20 +114,35 @@ class Solution:
         return res
 
     def postorderTraversalIterative(self, root: Optional[TreeNode]) -> List[int]:
+        # if not root:
+        #     return []
+
+        # res = []
+        # stack = [root]
+        # while stack:
+        #     node = stack.pop()
+        #     res.append(node.val)
+        #     if node.left:
+        #         stack.append(node.left)
+        #     if node.right:
+        #         stack.append(node.right)
+
+        # return res[::-1]
         if not root:
             return []
-
-        res = []
         stack = [root]
+        ans = []
         while stack:
             node = stack.pop()
-            res.append(node.val)
+            ans.append(node.val)
             if node.left:
                 stack.append(node.left)
             if node.right:
                 stack.append(node.right)
+        return ans[::-1]
 
-        return res[::-1]
+    
+
 
     def postorderTraversalIterativePrev(self, root: Optional[TreeNode]) -> List[int]:
         res = []

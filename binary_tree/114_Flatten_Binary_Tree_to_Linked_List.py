@@ -23,22 +23,35 @@ class TreeNode:
 
 class Solution:
     def flatten(self, root: Optional[TreeNode]) -> None:
-        def dfs(node: Optional[TreeNode]) -> Optional[TreeNode]:
+        # def dfs(node: Optional[TreeNode]) -> Optional[TreeNode]:
+        #     if not node:
+        #         return None
+
+        #     left_tail = dfs(node.left)
+        #     right_tail = dfs(node.right)
+
+        #     if node.left:
+        #         tail = left_tail
+        #         tail.right = node.right
+        #         node.right = node.left
+        #         node.left = None
+
+        #     return right_tail or left_tail or node
+
+        # dfs(root)
+        def dfs(node):
             if not node:
                 return None
-
             left_tail = dfs(node.left)
             right_tail = dfs(node.right)
-
-            if node.left:
+            if left_tail:
                 tail = left_tail
                 tail.right = node.right
                 node.right = node.left
                 node.left = None
-
-            return right_tail or left_tail or node
-
+            return left_tail or right_tail or node
         dfs(root)
+        
 
 
 def build_tree(values):

@@ -13,26 +13,46 @@ from typing import List
 
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
+        # ans = []
+        # path = []
+
+        # def is_palindrome(sub: str) -> bool:
+        #     return sub == sub[::-1]
+
+        # def backtrack(start: int) -> None:
+        #     if start == len(s):
+        #         ans.append(path[:])
+        #         return
+
+        #     for end in range(start + 1, len(s) + 1):
+        #         sub = s[start:end]
+        #         if not is_palindrome(sub):
+        #             continue
+        #         path.append(sub)
+        #         backtrack(end)
+        #         path.pop()
+
+        # backtrack(0)
+        # return ans
+
         ans = []
         path = []
-
-        def is_palindrome(sub: str) -> bool:
-            return sub == sub[::-1]
-
-        def backtrack(start: int) -> None:
-            if start == len(s):
+        def is_palindrome(s):
+            return s == s[::-1]
+        
+        def dfs(index):
+            if index == len(s):
                 ans.append(path[:])
                 return
-
-            for end in range(start + 1, len(s) + 1):
-                sub = s[start:end]
+            for j in range(index+1, len(s) + 1):
+                sub = s[index, j]
                 if not is_palindrome(sub):
                     continue
                 path.append(sub)
-                backtrack(end)
+                dfs(j)
                 path.pop()
 
-        backtrack(0)
+        dfs(0)
         return ans
 
 

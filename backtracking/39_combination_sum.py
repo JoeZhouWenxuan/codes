@@ -25,23 +25,40 @@ from typing import List
 # 排序后当 candidates[i] > remaining 时直接 break，剪去后续所有分支。
 # 时间 O(n^(t/m))，空间 O(t/m) 递归栈深度
 class Solution:
+    # def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    #     candidates.sort()
+    #     res = []
+
+    #     def backtrack(start: int, path: List[int], remaining: int):
+    #         if remaining == 0:
+    #             res.append(path[:])
+    #             return
+    #         for i in range(start, len(candidates)):
+    #             if candidates[i] > remaining:   # 剪枝：后续更大，直接终止
+    #                 break
+    #             path.append(candidates[i])
+    #             backtrack(i, path, remaining - candidates[i])  # i 不+1，可重复选
+    #             path.pop()
+
+    #     backtrack(0, [], target)
+    #     return res
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
-        res = []
-
-        def backtrack(start: int, path: List[int], remaining: int):
+        ans = []
+        path = []
+        def dfs(index, remaining):
             if remaining == 0:
-                res.append(path[:])
+                ans.append(path[:])
                 return
-            for i in range(start, len(candidates)):
-                if candidates[i] > remaining:   # 剪枝：后续更大，直接终止
+            for i in range(index, len(candidates)):
+                if candidates[i] > remaining:
                     break
                 path.append(candidates[i])
-                backtrack(i, path, remaining - candidates[i])  # i 不+1，可重复选
+                dfs(i, remaining-candidates[i])
                 path.pop()
+        dfs(0, target)
+        return ans
 
-        backtrack(0, [], target)
-        return res
 
 
 # ── 解法二：回溯（无剪枝，对比用） ────────────────────────────

@@ -21,22 +21,34 @@ class TreeNode:
 
 class Solution:
     def buildTree(self, preorder, inorder) -> Optional[TreeNode]:
-        index = {value: i for i, value in enumerate(inorder)}
+        # index = {value: i for i, value in enumerate(inorder)}
 
-        def dfs(pre_l: int, pre_r: int, in_l: int, in_r: int) -> Optional[TreeNode]:
-            if pre_l > pre_r:
+        # def dfs(pre_l: int, pre_r: int, in_l: int, in_r: int) -> Optional[TreeNode]:
+        #     if pre_l > pre_r:
+        #         return None
+
+        #     root_val = preorder[pre_l]
+        #     root = TreeNode(root_val)
+        #     pivot = index[root_val]
+        #     left_size = pivot - in_l
+
+        #     root.left = dfs(pre_l + 1, pre_l + left_size, in_l, pivot - 1)
+        #     root.right = dfs(pre_l + left_size + 1, pre_r, pivot + 1, in_r)
+        #     return root
+
+        # return dfs(0, len(preorder) - 1, 0, len(inorder) - 1)
+        index = {x: i for i, x in enumerate(inorder)}
+        def dfs(pl, pr, il, ir):
+            if pl > pr:
                 return None
-
-            root_val = preorder[pre_l]
-            root = TreeNode(root_val)
-            pivot = index[root_val]
-            left_size = pivot - in_l
-
-            root.left = dfs(pre_l + 1, pre_l + left_size, in_l, pivot - 1)
-            root.right = dfs(pre_l + left_size + 1, pre_r, pivot + 1, in_r)
+            v = preorder[pl]
+            root = TreeNode(v)
+            pivot = index(v)
+            l_s = pivot - il
+            root.left = dfs(pl+1, pl+l_s, il, pivot-1)
+            root.right = dfs(pl+l_s+1, pr, pivot+1, ir)
             return root
-
-        return dfs(0, len(preorder) - 1, 0, len(inorder) - 1)
+        return dfs(0, len(preorder)-1, 0, len(inorder)-1)
 
 
 def level_order_values(root):

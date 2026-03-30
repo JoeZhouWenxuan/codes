@@ -15,6 +15,24 @@ from typing import List
 
 
 class Solution:
+    # def searchRange(self, nums: List[int], target: int) -> List[int]:
+    #     def find_left(nums, target):
+    #         left, right = 0, len(nums) - 1
+    #         while left <= right:
+    #             mid = (left + right) // 2
+    #             if nums[mid] < target:
+    #                 left = mid + 1
+    #             else:
+    #                 right = mid - 1
+    #         return left
+
+    #     left_idx = find_left(nums, target)
+    #     if left_idx == len(nums) or nums[left_idx] != target:
+    #         return [-1, -1]
+
+    #     right_idx = find_left(nums, target + 1) - 1
+    #     return [left_idx, right_idx]
+
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         def find_left(nums, target):
             left, right = 0, len(nums) - 1
@@ -25,13 +43,13 @@ class Solution:
                 else:
                     right = mid - 1
             return left
-
-        left_idx = find_left(nums, target)
-        if left_idx == len(nums) or nums[left_idx] != target:
+        left_index = find_left(nums, target)
+        if left_index == len(nums) or nums[left_index] != target:
             return [-1, -1]
+        right_index = find_left(nums, target+1) - 1
 
-        right_idx = find_left(nums, target + 1) - 1
-        return [left_idx, right_idx]
+        return [left_index, right_index]
+
 
 
 if __name__ == "__main__":

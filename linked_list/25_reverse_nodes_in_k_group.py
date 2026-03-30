@@ -21,24 +21,38 @@ class ListNode:
 
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        # 检查剩余节点是否足够 k 个
+        # # 检查剩余节点是否足够 k 个
+        # cur = head
+        # for _ in range(k):
+        #     if not cur:
+        #         return head  # 不足 k 个，原样返回
+        #     cur = cur.next
+
+        # # 反转前 k 个节点
+        # prev, curr = None, head
+        # for _ in range(k):
+        #     nxt = curr.next
+        #     curr.next = prev
+        #     prev = curr
+        #     curr = nxt
+
+        # # head 现在是翻转后的尾节点，连接后续递归结果
+        # head.next = self.reverseKGroup(curr, k)
+        # return prev  # prev 是翻转后的头节点
         cur = head
         for _ in range(k):
             if not cur:
-                return head  # 不足 k 个，原样返回
+                return head
             cur = cur.next
-
-        # 反转前 k 个节点
-        prev, curr = None, head
+        prev, cur = None, head
         for _ in range(k):
-            nxt = curr.next
-            curr.next = prev
-            prev = curr
-            curr = nxt
-
-        # head 现在是翻转后的尾节点，连接后续递归结果
-        head.next = self.reverseKGroup(curr, k)
-        return prev  # prev 是翻转后的头节点
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        
+        head.next = self.reverseKGroup(cur, k)
+        return prev
 
 
 def make_list(vals):

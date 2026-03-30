@@ -12,15 +12,23 @@ from typing import List
 
 
 class Solution:
+    # def maxSubArray(self, nums: List[int]) -> int:
+    #     current = best = nums[0]
+
+    #     for num in nums[1:]:
+    #         current = max(num, current + num)
+    #         best = max(best, current)
+
+    #     return best
+    
     def maxSubArray(self, nums: List[int]) -> int:
-        current = best = nums[0]
-
-        for num in nums[1:]:
-            current = max(num, current + num)
-            best = max(best, current)
-
-        return best
-
+        cur = 0
+        max_sum = 0
+        for i, num in enumerate(nums):
+            cur = max(cur, cur + num)
+            max_sum = max(cur, max_sum)
+        return max_sum
+       
 
 if __name__ == "__main__":
     s = Solution()

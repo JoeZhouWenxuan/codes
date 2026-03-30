@@ -44,33 +44,51 @@ class SolutionExpand:
 #   新串中心 i，半径 p[i]  →  原始串起点 (i - p[i]) // 2，长度 p[i]
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        # 预处理
-        t = '#' + '#'.join(s) + '#'
-        n = len(t)
-        p = [0] * n   # p[i]：t[i] 为中心的回文半径（不含自身）
-        c = r = 0     # c：最右回文的中心；r：最右回文的右边界（开区间）
+        # # 预处理
+        # t = '#' + '#'.join(s) + '#'
+        # n = len(t)
+        # p = [0] * n   # p[i]：t[i] 为中心的回文半径（不含自身）
+        # c = r = 0     # c：最右回文的中心；r：最右回文的右边界（开区间）
 
+        # for i in range(n):
+        #     if i < r:
+        #         mirror = 2 * c - i
+        #         p[i] = min(p[mirror], r - i)   # 利用镜像初始化，避免重复计算
+
+        #     # 从已知边界继续扩展
+        #     left, right = i - (p[i] + 1), i + (p[i] + 1)
+        #     while left >= 0 and right < n and t[left] == t[right]:
+        #         p[i] += 1
+        #         left  -= 1
+        #         right += 1
+
+        #     # 更新最右边界
+        #     if i + p[i] > r:
+        #         c, r = i, i + p[i]
+
+        # # 找最大半径，还原到原始串
+        # max_i = p.index(max(p))
+        # start = (max_i - p[max_i]) // 2
+        # return s[start: start + p[max_i]]
+        t = "#" + "#".join(s) + "#"
+        n = len(t)
+        p = [0] * n
+        c, r = 0, 0
         for i in range(n):
             if i < r:
-                mirror = 2 * c - i
-                p[i] = min(p[mirror], r - i)   # 利用镜像初始化，避免重复计算
-
-            # 从已知边界继续扩展
-            left, right = i - (p[i] + 1), i + (p[i] + 1)
+                mirror = 2*c - i
+                p[i] = min(p[mirror], r - i)
+            left, right = i - (p[i]+1), i + (p[i]+1)
             while left >= 0 and right < n and t[left] == t[right]:
                 p[i] += 1
-                left  -= 1
+                left -= 1
                 right += 1
-
-            # 更新最右边界
             if i + p[i] > r:
-                c, r = i, i + p[i]
-
-        # 找最大半径，还原到原始串
+                c, r = i, i+p[i]
         max_i = p.index(max(p))
         start = (max_i - p[max_i]) // 2
-        return s[start: start + p[max_i]]
-
+        return s[start, start+p[max_i]]
+            
 
 if __name__ == "__main__":
     expand   = SolutionExpand()

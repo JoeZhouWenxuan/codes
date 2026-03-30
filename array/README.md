@@ -8,6 +8,8 @@
 已整理文件：
 - [31_next_permutation.py](/Users/bytedance/Documents/codes/array/31_next_permutation.py)
 - [53_Maximum_Subarray.py](/Users/bytedance/Documents/codes/array/53_Maximum_Subarray.py)
+- [75_Sort_Colors.py](/Users/bytedance/Documents/codes/array/75_Sort_Colors.py)
+- [406_Queue_Reconstruction_by_Height.py](/Users/bytedance/Documents/codes/array/406_Queue_Reconstruction_by_Height.py)
 - [56_Merge_Intervals.py](/Users/bytedance/Documents/codes/array/56_Merge_Intervals.py)
 - [57_Insert_Interval.py](/Users/bytedance/Documents/codes/array/57_Insert_Interval.py)
 - [121_Best_Time_to_Buy_and_Sell_Stock.py](/Users/bytedance/Documents/codes/array/121_Best_Time_to_Buy_and_Sell_Stock.py)

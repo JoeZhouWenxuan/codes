@@ -5,6 +5,19 @@
 专题整理：
 - [LeetCode_回文专题整理.md](/Users/bytedance/Documents/codes/string/LeetCode_回文专题整理.md)
 
+其他已整理字符串题：
+- [6_zigzag_conversion.py](/Users/bytedance/Documents/codes/string/6_zigzag_conversion.py)
+- [20_valid_parentheses.py](/Users/bytedance/Documents/codes/string/20_valid_parentheses.py)
+- [28_find_the_index_of_the_first_occurrence.py](/Users/bytedance/Documents/codes/string/28_find_the_index_of_the_first_occurrence.py)
+- [32_longest_valid_parentheses.py](/Users/bytedance/Documents/codes/string/32_longest_valid_parentheses.py)
+- [49_group_anagrams.py](/Users/bytedance/Documents/codes/string/49_group_anagrams.py)
+- [76_minimum_window_substring.py](/Users/bytedance/Documents/codes/string/76_minimum_window_substring.py)
+- [139_word_break.py](/Users/bytedance/Documents/codes/string/139_word_break.py)
+- [208_implement_trie.py](/Users/bytedance/Documents/codes/string/208_implement_trie.py)
+- [394_decode_string.py](/Users/bytedance/Documents/codes/string/394_decode_string.py)
+- [438_find_all_anagrams.py](/Users/bytedance/Documents/codes/string/438_find_all_anagrams.py)
+- [459_repeated_substring_pattern.py](/Users/bytedance/Documents/codes/string/459_repeated_substring_pattern.py)
+
 已整理的回文相关文件：
 - [5_longest_palindromic_substring.py](/Users/bytedance/Documents/codes/string/5_longest_palindromic_substring.py)
 - [9_palindrome_number.py](/Users/bytedance/Documents/codes/string/9_palindrome_number.py)

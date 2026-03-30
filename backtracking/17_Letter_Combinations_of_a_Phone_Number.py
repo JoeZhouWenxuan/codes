@@ -12,10 +12,38 @@ from typing import List
 
 
 class Solution:
+    # def letterCombinations(self, digits: str) -> List[str]:
+    #     if not digits:
+    #         return []
+
+    #     mapping = {
+    #         "2": "abc",
+    #         "3": "def",
+    #         "4": "ghi",
+    #         "5": "jkl",
+    #         "6": "mno",
+    #         "7": "pqrs",
+    #         "8": "tuv",
+    #         "9": "wxyz",
+    #     }
+    #     ans = []
+    #     path = []
+
+    #     def backtrack(index: int) -> None:
+    #         if index == len(digits):
+    #             ans.append("".join(path))
+    #             return
+
+    #         for ch in mapping[digits[index]]:
+    #             path.append(ch)
+    #             backtrack(index + 1)
+    #             path.pop()
+
+    #     backtrack(0)
+    #     return ans
     def letterCombinations(self, digits: str) -> List[str]:
         if not digits:
             return []
-
         mapping = {
             "2": "abc",
             "3": "def",
@@ -28,20 +56,17 @@ class Solution:
         }
         ans = []
         path = []
-
-        def backtrack(index: int) -> None:
+        def dfs(index):
             if index == len(digits):
                 ans.append("".join(path))
-                return
-
+                return  # 记得return
             for ch in mapping[digits[index]]:
                 path.append(ch)
-                backtrack(index + 1)
+                dfs(index+1)
                 path.pop()
-
-        backtrack(0)
+                
+        dfs(0)
         return ans
-
 
 if __name__ == "__main__":
     s = Solution()

@@ -35,27 +35,47 @@ class Solution:
         return ans
     
     def findAnagrams2(self, s: str, p: str) -> List[int]:
+        # need = Counter(p)
+        # window = Counter()
+        # ans = []
+        # left = 0
+        # for right, x in enumerate(s):
+        #     if x not in need:
+        #         window.clear()
+        #         left = right + 1
+        #         continue
+        #     window[x] += 1
+
+        #     while window[x] > need[x]:
+        #         left_char = s[left]
+        #         window[left_char] -= 1
+        #         if window[left_char] == 0:
+        #             del window[left_char]
+        #         left += 1
+
+        #     if right - left + 1 == len(p):
+        #         ans.append(left)
+
+        # return ans
         need = Counter(p)
         window = Counter()
-        ans = []
         left = 0
-        for right, x in enumerate(s):
-            if x not in need:
+        ans = []
+        for right, ch in enumerate(s):
+            if ch not in need:
                 window.clear()
                 left = right + 1
                 continue
-            window[x] += 1
+            window[ch] += 1
 
-            while window[x] > need[x]:
+            # 不满足结果的状态下更新
+            while window[ch] > need[ch]:
                 left_char = s[left]
                 window[left_char] -= 1
-                if window[left_char] == 0:
-                    del window[left_char]
                 left += 1
 
             if right - left + 1 == len(p):
                 ans.append(left)
-
         return ans
 
 

@@ -22,26 +22,54 @@ class ListNode:
 
 
 class Solution:
-    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        # 递归终止：0或1个节点
+    # def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    #     # 递归终止：0或1个节点
+    #     if not head or not head.next:
+    #         return head
+
+    #     # 快慢指针找中点，将链表从中间断开
+    #     slow, fast = head, head.next
+    #     while fast and fast.next:
+    #         slow = slow.next
+    #         fast = fast.next.next
+    #     mid = slow.next
+    #     slow.next = None  # 断开
+
+    #     # 递归排序两段
+    #     left = self.sortList(head)
+    #     right = self.sortList(mid)
+
+    #     # 合并两段有序链表
+    #     return self._merge(left, right)
+
+    # def _merge(self, l1, l2):
+    #     dummy = ListNode()
+    #     cur = dummy
+    #     while l1 and l2:
+    #         if l1.val <= l2.val:
+    #             cur.next = l1
+    #             l1 = l1.next
+    #         else:
+    #             cur.next = l2
+    #             l2 = l2.next
+    #         cur = cur.next
+    #     cur.next = l1 or l2
+    #     return dummy.next
+
+    def sortList(self, head):
         if not head or not head.next:
             return head
-
-        # 快慢指针找中点，将链表从中间断开
         slow, fast = head, head.next
+
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
         mid = slow.next
-        slow.next = None  # 断开
-
-        # 递归排序两段
+        slow.next = None
         left = self.sortList(head)
         right = self.sortList(mid)
-
-        # 合并两段有序链表
         return self._merge(left, right)
-
+    
     def _merge(self, l1, l2):
         dummy = ListNode()
         cur = dummy
@@ -55,6 +83,7 @@ class Solution:
             cur = cur.next
         cur.next = l1 or l2
         return dummy.next
+
 
 
 def make_list(vals):

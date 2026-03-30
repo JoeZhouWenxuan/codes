@@ -13,21 +13,34 @@ from typing import List
 
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
+        # num_set = set(nums)
+        # ans = 0
+
+        # for num in num_set:
+        #     if num - 1 in num_set:
+        #         continue
+
+        #     current = num
+        #     length = 1
+        #     while current + 1 in num_set:
+        #         current += 1
+        #         length += 1
+
+        #     ans = max(ans, length)
+
+        # return ans
         num_set = set(nums)
         ans = 0
 
-        for num in num_set:
-            if num - 1 in num_set:
+        for i, num in nums:
+            if num - 1 not in num_set:
                 continue
-
-            current = num
-            length = 1
-            while current + 1 in num_set:
-                current += 1
-                length += 1
-
-            ans = max(ans, length)
-
+            curr = num + 1
+            len = 1
+            while curr in nums:
+                curr += 1
+                len += 1
+            ans = max(ans, len)
         return ans
     
     def longestConsecutive(self, nums: List[int]) -> int:

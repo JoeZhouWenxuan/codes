@@ -13,21 +13,32 @@ from typing import List
 
 
 class Solution:
+    # def findDuplicate(self, nums: List[int]) -> int:
+    #     slow = nums[0]
+    #     fast = nums[nums[0]]
+
+    #     while slow != fast:
+    #         slow = nums[slow]
+    #         fast = nums[nums[fast]]
+
+    #     fast = 0
+    #     while slow != fast:
+    #         slow = nums[slow]
+    #         fast = nums[fast]
+
+    #     return slow
+
     def findDuplicate(self, nums: List[int]) -> int:
         slow = nums[0]
         fast = nums[nums[0]]
-
         while slow != fast:
             slow = nums[slow]
             fast = nums[nums[fast]]
-
-        fast = 0
-        while slow != fast:
+        slow2 = nums[0]
+        while slow != slow2:
             slow = nums[slow]
-            fast = nums[fast]
-
+            slow2 = nums[slow2]
         return slow
-
 
 if __name__ == "__main__":
     s = Solution()

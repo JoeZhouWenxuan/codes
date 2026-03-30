@@ -17,15 +17,24 @@ class Solution:
         return [num for num, _ in Counter(nums).most_common(k)]
     
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # counts = Counter(nums)
+        # heap = []
+        # for x, freq in counts.items():
+        #     if len(heap) < k:   # 应是小于，如果<=，再压进去就大于K
+        #         heapq.heappush(heap, (freq, x))
+        #     else:
+        #         if heap[0][0] < freq:   # 新的元素大于才替换
+        #             heapq.heapreplace(heap, (freq, x))
+        # return [x for freq, x in heap]
         counts = Counter(nums)
         heap = []
         for x, freq in counts.items():
-            if len(heap) < k:   # 应是小于，如果<=，再压进去就大于K
+            if len(heap) < k:
                 heapq.heappush(heap, (freq, x))
             else:
-                if heap[0][0] < freq:   # 新的元素大于才替换
+                if heap[0][0] < freq:
                     heapq.heapreplace(heap, (freq, x))
-        return [x for freq, x in heap]
+        return [x for _, x in heap]
 
 
 

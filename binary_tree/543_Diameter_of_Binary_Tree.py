@@ -21,17 +21,28 @@ class TreeNode:
 
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        ans = 0
+        # ans = 0
 
-        def depth(node: Optional[TreeNode]) -> int:
+        # def depth(node: Optional[TreeNode]) -> int:
+        #     nonlocal ans
+        #     if not node:
+        #         return 0
+        #     left = depth(node.left)
+        #     right = depth(node.right)
+        #     ans = max(ans, left + right)
+        #     return max(left, right) + 1
+
+        # depth(root)
+        # return ans
+        ans = 0
+        def depth(node):
             nonlocal ans
             if not node:
                 return 0
             left = depth(node.left)
             right = depth(node.right)
-            ans = max(ans, left + right)
+            ans = max(ans, left+right)
             return max(left, right) + 1
-
         depth(root)
         return ans
 

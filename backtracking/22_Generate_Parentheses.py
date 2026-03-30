@@ -12,28 +12,44 @@ from typing import List
 
 
 class Solution:
+    # def generateParenthesis(self, n: int) -> List[str]:
+    #     ans = []
+    #     path = []
+
+    #     def backtrack(left: int, right: int) -> None:
+    #         if len(path) == 2 * n:
+    #             ans.append("".join(path))
+    #             return
+
+    #         if left < n:
+    #             path.append("(")
+    #             backtrack(left + 1, right)
+    #             path.pop()
+
+    #         if right < left:
+    #             path.append(")")
+    #             backtrack(left, right + 1)
+    #             path.pop()
+
+    #     backtrack(0, 0)
+    #     return ans
     def generateParenthesis(self, n: int) -> List[str]:
         ans = []
         path = []
-
-        def backtrack(left: int, right: int) -> None:
+        def dfs(left, right):
             if len(path) == 2 * n:
                 ans.append("".join(path))
-                return
-
+                return 
             if left < n:
                 path.append("(")
-                backtrack(left + 1, right)
+                dfs(left+1, right)
                 path.pop()
-
             if right < left:
                 path.append(")")
-                backtrack(left, right + 1)
+                dfs(left, right+1)
                 path.pop()
-
-        backtrack(0, 0)
+        dfs(0, 0)
         return ans
-
 
 if __name__ == "__main__":
     s = Solution()

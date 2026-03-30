@@ -60,14 +60,21 @@ class Solution2:
             return None
         return self._merge_range(lists, 0, len(lists) - 1)
 
+    # def _merge_range(self, lists, l, r):
+    #     if l == r:
+    #         return lists[l]
+    #     mid = (l + r) // 2
+    #     left = self._merge_range(lists, l, mid)
+    #     right = self._merge_range(lists, mid + 1, r)
+    #     return self._merge_two(left, right)
     def _merge_range(self, lists, l, r):
         if l == r:
             return lists[l]
-        mid = (l + r) // 2
+        mid = (l+r) // 2
         left = self._merge_range(lists, l, mid)
-        right = self._merge_range(lists, mid + 1, r)
+        right = self._merge_range(lists, mid+1, r)
         return self._merge_two(left, right)
-
+    
     def _merge_two(self, l1, l2):
         dummy = ListNode()
         cur = dummy
