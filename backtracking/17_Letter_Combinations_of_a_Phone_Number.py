@@ -41,9 +41,10 @@ class Solution:
 
     #     backtrack(0)
     #     return ans
+
+    
+    
     def letterCombinations(self, digits: str) -> List[str]:
-        if not digits:
-            return []
         mapping = {
             "2": "abc",
             "3": "def",
@@ -54,17 +55,18 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
+        if not digits:
+            return []
         ans = []
         path = []
-        def dfs(index):
-            if index == len(digits):
+        def dfs(i):
+            if i == len(digits):
                 ans.append("".join(path))
-                return  # 记得return
-            for ch in mapping[digits[index]]:
+                return
+            for ch in mapping[digits[i]]:
                 path.append(ch)
-                dfs(index+1)
+                dfs(i+1)
                 path.pop()
-                
         dfs(0)
         return ans
 

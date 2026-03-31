@@ -12,6 +12,7 @@
 - [62_Unique_Paths.py](/Users/bytedance/Documents/codes/dynamic_programming/62_Unique_Paths.py)
 - [64_Minimum_Path_Sum.py](/Users/bytedance/Documents/codes/dynamic_programming/64_Minimum_Path_Sum.py)
 - [70_Climbing_Stairs.py](/Users/bytedance/Documents/codes/dynamic_programming/70_Climbing_Stairs.py)
+- [72_Edit_Distance.py](/Users/bytedance/Documents/codes/dynamic_programming/72_Edit_Distance.py)
 - [139_Word_Break.py](/Users/bytedance/Documents/codes/dynamic_programming/139_Word_Break.py)
 - [198_House_Robber.py](/Users/bytedance/Documents/codes/dynamic_programming/198_House_Robber.py)
 - [279_Perfect_Squares.py](/Users/bytedance/Documents/codes/dynamic_programming/279_Perfect_Squares.py)

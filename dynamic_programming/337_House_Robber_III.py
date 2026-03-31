@@ -10,6 +10,16 @@
 # 示例：
 # 输入：root = [3,2,3,null,3,null,1]    输出：7
 # 输入：root = [3,4,5,1,3,null,1]       输出：9
+#
+# 思路：树形 DP。
+# 对每个节点维护两个状态：
+# 1. 偷当前节点时，这棵子树的最大收益
+# 2. 不偷当前节点时，这棵子树的最大收益
+#
+# 设 dfs(node) = (rob_current, skip_current)
+# - rob_current = node.val + 左子树不偷时收益 + 右子树不偷时收益
+# - skip_current = max(左子树偷/不偷) + max(右子树偷/不偷)
+# 最终答案就是 max(dfs(root))
 
 from typing import Optional
 
@@ -29,7 +39,10 @@ class Solution:
 
             left = dfs(node.left)
             right = dfs(node.right)
+
+            # 偷当前节点，则左右孩子都不能偷
             rob_current = node.val + left[1] + right[1]
+            # 不偷当前节点，则左右孩子可偷可不偷，分别取最大
             skip_current = max(left) + max(right)
             return rob_current, skip_current
 

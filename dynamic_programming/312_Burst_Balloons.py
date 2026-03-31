@@ -15,8 +15,44 @@ from typing import List
 
 class Solution:
     def maxCoins(self, nums: List[int]) -> int:
+        '''
+        这题的代码核心是“区间 DP + 枚举最后一个被戳破的气球”
+        '''
         arr = [1] + nums + [1]
         n = len(arr)
+        '''
+        定义：
+        dp[left][right]
+        表示：
+
+        戳破开区间 (left, right) 内所有气球，能得到的最大硬币数。
+
+        注意是开区间，不包括 left 和 right 自己。
+
+        比如：
+
+        dp[0][5] 表示戳破 arr[1] ~ arr[4]
+        dp[1][4] 表示戳破 arr[2] ~ arr[3]
+
+
+        3. 为什么要枚举“最后一个戳破的气球”
+        这题正着想很难，因为：
+
+        你先戳哪个，会影响后面左右邻居
+        状态一直在变
+        所以反过来想：
+
+        假设区间 (left, right) 里，最后一个被戳的是 last。
+
+        那这时候：
+
+        last 左边的气球都已经戳完了
+        last 右边的气球也已经戳完了
+        所以它最终相邻的一定就是 left 和 right
+        于是最后戳 last 的收益就固定了：
+
+        arr[left] * arr[last] * arr[right]
+        '''
         dp = [[0] * n for _ in range(n)]
 
         for length in range(2, n):

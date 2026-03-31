@@ -13,25 +13,44 @@ from typing import List
 
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        path = []
-        used = [False] * len(nums)
+        # ans = []
+        # path = []
+        # used = [False] * len(nums)
 
-        def backtrack() -> None:
-            if len(path) == len(nums):
+        # def backtrack() -> None:
+        #     if len(path) == len(nums):
+        #         ans.append(path[:])
+        #         return
+
+        #     for i, num in enumerate(nums):
+        #         if used[i]:
+        #             continue
+        #         used[i] = True
+        #         path.append(num)
+        #         backtrack()
+        #         path.pop()
+        #         used[i] = False
+
+        # backtrack()
+        # return ans
+
+        ans = []
+        n = len(nums)
+        used = [False] * n
+        path = []
+        def dfs():
+            if len(path) == n:
                 ans.append(path[:])
                 return
-
-            for i, num in enumerate(nums):
+            for i in range(n):
                 if used[i]:
                     continue
+                path.append(nums[i])
                 used[i] = True
-                path.append(num)
-                backtrack()
+                dfs()
                 path.pop()
                 used[i] = False
 
-        backtrack()
         return ans
 
 

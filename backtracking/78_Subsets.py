@@ -13,19 +13,28 @@ from typing import List
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        ans = []
+        # ans = []
+        # path = []
+
+        # def backtrack(start: int) -> None:
+        #     ans.append(path[:])
+        #     for i in range(start, len(nums)):
+        #         path.append(nums[i])
+        #         backtrack(i + 1)
+        #         path.pop()
+
+        # backtrack(0)
+        # return ans
         path = []
-
-        def backtrack(start: int) -> None:
+        ans = []
+        def dfs(index):
             ans.append(path[:])
-            for i in range(start, len(nums)):
+            for i in range(index, len(nums)):
                 path.append(nums[i])
-                backtrack(i + 1)
+                dfs(i+1)
                 path.pop()
-
-        backtrack(0)
+        dfs(0)
         return ans
-
 
 if __name__ == "__main__":
     s = Solution()

@@ -41,17 +41,26 @@ class Solution:
             return s == s[::-1]
         
         def dfs(index):
+            # if index == len(s):
+            #     ans.append(path[:])
+            #     return
+            # for j in range(index+1, len(s) + 1):
+            #     sub = s[index, j]
+            #     if not is_palindrome(sub):
+            #         continue
+            #     path.append(sub)
+            #     dfs(j)
+            #     path.pop()
             if index == len(s):
                 ans.append(path[:])
                 return
-            for j in range(index+1, len(s) + 1):
-                sub = s[index, j]
-                if not is_palindrome(sub):
+            for i in range(index + 1, len(s) + 1):
+                sub_str = s[index: i]
+                if not is_palindrome(sub_str):
                     continue
-                path.append(sub)
-                dfs(j)
+                path.append(sub_str)
+                dfs(i)  # 注意是i，因为sub_str是左闭右开
                 path.pop()
-
         dfs(0)
         return ans
 

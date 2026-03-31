@@ -34,18 +34,18 @@ class Solution:
     #     backtrack(0, 0)
     #     return ans
     def generateParenthesis(self, n: int) -> List[str]:
-        ans = []
         path = []
+        ans = []
         def dfs(left, right):
-            if len(path) == 2 * n:
+            if len(path) == 2*n:
                 ans.append("".join(path))
-                return 
+                return
             if left < n:
-                path.append("(")
+                path.append('(')
                 dfs(left+1, right)
                 path.pop()
             if right < left:
-                path.append(")")
+                path.append(')')
                 dfs(left, right+1)
                 path.pop()
         dfs(0, 0)
