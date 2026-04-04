@@ -29,19 +29,20 @@ class Solution:
         #     ans = max(ans, length)
 
         # return ans
-        num_set = set(nums)
         ans = 0
-
-        for i, num in nums:
-            if num - 1 not in num_set:
+        nums_set = set(nums)
+        for i, num in enumerate(nums):
+            if num - 1 not in nums_set:
                 continue
-            curr = num + 1
-            len = 1
-            while curr in nums:
+            curr = num
+            count = 1
+            while curr + 1 in nums_set:
                 curr += 1
-                len += 1
-            ans = max(ans, len)
+                count += 1
+            ans = max(ans, count)
         return ans
+
+
     
     def longestConsecutive(self, nums: List[int]) -> int:
         num_set = set(nums)

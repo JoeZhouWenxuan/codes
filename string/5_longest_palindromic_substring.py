@@ -70,24 +70,27 @@ class Solution:
         # max_i = p.index(max(p))
         # start = (max_i - p[max_i]) // 2
         # return s[start: start + p[max_i]]
-        t = "#" + "#".join(s) + "#"
-        n = len(t)
-        p = [0] * n
+        t = '#' + "#".join(s) + "#"
         c, r = 0, 0
-        for i in range(n):
+        p = [0] * len(t)
+
+        for i in range(len(t)):
             if i < r:
-                mirror = 2*c - i
+                mirror = 2 * c - i
                 p[i] = min(p[mirror], r - i)
-            left, right = i - (p[i]+1), i + (p[i]+1)
-            while left >= 0 and right < n and t[left] == t[right]:
-                p[i] += 1
+
+            left, right = i - (p[i] + 1), i + (p[i] + 1)
+            while left >= 0 and right < len(t) and t[left] == t[right]:
                 left -= 1
                 right += 1
+                p[i] += 1
             if i + p[i] > r:
-                c, r = i, i+p[i]
+                c, r = i, i + p[i]
+        
         max_i = p.index(max(p))
         start = (max_i - p[max_i]) // 2
-        return s[start, start+p[max_i]]
+
+        return s[start, start + max_i]
             
 
 if __name__ == "__main__":

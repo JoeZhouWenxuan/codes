@@ -31,10 +31,6 @@ class Solution:
 
 
     def trap2(self, heights):
-
-        left, right = 0, len(heights) - 1
-        left_max, right_max = 0, 0
-        ans = 0
         '''
         这里通常写 while left < right 更合适。
         原因是当 left == right 时：
@@ -60,21 +56,19 @@ class Solution:
         一句话理解
         接雨水至少要有左右两边界，所以只剩一个指针位置时就该停。
         '''
-        while left < right: # left和right相同时
-            
+        left, right = 0, len(heights) - 1
+        left_max, right_max = 0
+        ans = 0
+        while left < right:
             if heights[left] < heights[right]:
-                if left_max > heights[left]:
-                    ans += left_max - heights[left]
-                else:
-                    left_max = heights[left]
+                left_max = max(left_max, heights[left])
+                ans += left_max - heights[left]
                 left += 1
             else:
-                if right_max > heights[right]:
-                    ans += right_max - heights[right]
-                else:
-                    right_max = heights[right]
+                right_max = max(right_max, heights[right])
+                ans += right_max - heights[right]
                 right -= 1
-
+        
         return ans
             
 

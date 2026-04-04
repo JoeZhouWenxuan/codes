@@ -24,10 +24,10 @@ class Solution:
         # return True
         far = 0
         for i, num in enumerate(nums):
-            if far < i:
+            if i > far:
                 return False
-            
-            far = max(far, num+i)
+            far = max(far, i + num)
+
         return True
 
 

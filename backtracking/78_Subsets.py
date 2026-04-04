@@ -25,8 +25,8 @@ class Solution:
 
         # backtrack(0)
         # return ans
-        path = []
         ans = []
+        path = []
         def dfs(index):
             ans.append(path[:])
             for i in range(index, len(nums)):

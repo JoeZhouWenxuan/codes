@@ -35,22 +35,21 @@ class Solution:
         # return ans
 
         ans = []
-        n = len(nums)
-        used = [False] * n
         path = []
+        used = [False] * len(nums)
         def dfs():
-            if len(path) == n:
+            if len(path) == len(nums):
                 ans.append(path[:])
                 return
-            for i in range(n):
-                if used[i]:
-                    continue
-                path.append(nums[i])
-                used[i] = True
-                dfs()
-                path.pop()
-                used[i] = False
+            for i, num in enumerate(nums):
+                if not used[i]:
+                    path.append(num)
+                    used[i] = True
+                    dfs()
+                    used[i] = False
+                    path.pop()
 
+        dfs()
         return ans
 
 

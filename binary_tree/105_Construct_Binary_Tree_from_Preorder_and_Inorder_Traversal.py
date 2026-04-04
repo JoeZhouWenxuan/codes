@@ -37,18 +37,18 @@ class Solution:
         #     return root
 
         # return dfs(0, len(preorder) - 1, 0, len(inorder) - 1)
-        index = {x: i for i, x in enumerate(inorder)}
+        index = {v: i for i, v in enumerate(inorder)}
+
         def dfs(pl, pr, il, ir):
             if pl > pr:
                 return None
-            v = preorder[pl]
-            root = TreeNode(v)
-            pivot = index(v)
-            l_s = pivot - il
-            root.left = dfs(pl+1, pl+l_s, il, pivot-1)
-            root.right = dfs(pl+l_s+1, pr, pivot+1, ir)
+            root_val = preorder[pl]
+            root = TreeNode(root_val)
+            pivot_index = index[root_val]
+            left_size = pivot_index - il # left_size最终为0，但接下来递归的时候，pl仍然+1
+            root.left = dfs(pl + 1, pl + left_size, il, pivot_index - 1)
+            root.right = dfs(pl + left_size + 1, pr, pivot_index + 1, ir)
             return root
-        return dfs(0, len(preorder)-1, 0, len(inorder)-1)
 
 
 def level_order_values(root):

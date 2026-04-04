@@ -23,11 +23,10 @@ class Solution:
     
     def maxSubArray(self, nums: List[int]) -> int:
         curr = ans = nums[0]
-        for x in nums[1: ]:
-            curr = max(x, curr + x)
+        for num in nums[1: ]:
+            curr = max(curr, curr + num)
             ans = max(ans, curr)
-        return
-
+        return ans
 
 if __name__ == "__main__":
     s = Solution()

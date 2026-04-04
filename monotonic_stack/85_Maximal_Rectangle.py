@@ -32,18 +32,18 @@ class Solution:
 
     def largestRectangleArea(self, heights: List[int]) -> int:
         stack = []
-        best = 0
-        extended = heights + [0]
+        ans = 0
+        heights = [0] + heights + [0]
+        for right, h in enumerate(heights):
+            while stack and heights[stack[-1]] > h:
+                curr = stack.pop()
+                left = stack[-1]
+                width = right - left - 1
 
-        for i, h in enumerate(extended):
-            while stack and extended[stack[-1]] > h:
-                height = extended[stack.pop()]
-                left = stack[-1] if stack else -1
-                width = i - left - 1
-                best = max(best, height * width)
-            stack.append(i)
+                ans = max(ans, heights[curr] * width)
+            stack.append(right)
 
-        return best
+        return ans
 
 
 if __name__ == "__main__":

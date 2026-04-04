@@ -57,18 +57,20 @@ class Solution:
         }
         if not digits:
             return []
-        ans = []
         path = []
-        def dfs(i):
-            if i == len(digits):
-                ans.append("".join(path))
+        ans = []
+        def dfs(index):
+            if index == len(digits):
+                ans.append(path[:])
                 return
-            for ch in mapping[digits[i]]:
+            for i, ch in enumerate(mapping[digits[index]]):
                 path.append(ch)
-                dfs(i+1)
+                dfs(index+1)
                 path.pop()
+
         dfs(0)
         return ans
+
 
 if __name__ == "__main__":
     s = Solution()

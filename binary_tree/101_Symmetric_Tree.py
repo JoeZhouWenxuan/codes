@@ -30,13 +30,12 @@ class Solution:
         # return check(root.left, root.right) if root else True
 
         def check(left, right):
-            if not left and not right:
+            if left is None and right is None:
                 return True
             if not left or not right or left.val != right.val:
                 return False
             return check(left.left, right.right) and check(left.right, right.left)
         return check(root.left, root.right) if root else True
-
 
 def build_tree(values):
     if not values:

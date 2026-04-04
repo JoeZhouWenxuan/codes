@@ -13,14 +13,34 @@ from typing import List
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
+        # candidate = None
+        # count = 0
+
+        # for num in nums:
+        #     if count == 0:
+        #         candidate = num
+        #     count += 1 if num == candidate else -1
+
+        # return candidate
+        '''
+        candidate
+        表示：
+        当前我们认为“可能是多数元素”的候选人
+        count
+        表示：
+        当前候选人相对于其他数的“净胜票数”
+        '''
         candidate = None
         count = 0
-
         for num in nums:
+            '''
+            如果当前没有候选人了，就把当前数设为候选人
+            如果新来的数和候选人一样，票数 +1
+            不一样，票数 -1
+            '''
             if count == 0:
                 candidate = num
-            count += 1 if num == candidate else -1
-
+            count += 1 if candidate == num else -1
         return candidate
 
 

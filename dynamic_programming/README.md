@@ -7,6 +7,8 @@
 
 已整理文件：
 - [10_Regular_Expression_Matching.py](/Users/bytedance/Documents/codes/dynamic_programming/10_Regular_Expression_Matching.py)
+- [120_Triangle.py](/Users/bytedance/Documents/codes/dynamic_programming/120_Triangle.py)
+- [152_Maximum_Product_Subarray.py](/Users/bytedance/Documents/codes/dynamic_programming/152_Maximum_Product_Subarray.py)
 - [53_Maximum_Subarray.py](/Users/bytedance/Documents/codes/dynamic_programming/53_Maximum_Subarray.py)
 - [55_Jump_Game.py](/Users/bytedance/Documents/codes/dynamic_programming/55_Jump_Game.py)
 - [62_Unique_Paths.py](/Users/bytedance/Documents/codes/dynamic_programming/62_Unique_Paths.py)

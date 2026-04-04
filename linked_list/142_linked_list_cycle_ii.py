@@ -23,22 +23,36 @@ class ListNode:
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slow, fast = head, head
+        # slow, fast = head, head
 
-        # 第一阶段：找到快慢指针相遇点
+        # # 第一阶段：找到快慢指针相遇点
+        # while fast and fast.next:
+        #     slow = slow.next
+        #     fast = fast.next.next
+        #     if slow is fast:
+        #         break
+        # else:
+        #     return None  # 无环
+
+        # # 第二阶段：一个指针从 head，一个从相遇点，同速前进，再次相遇即入口
+        # ptr = head
+        # while ptr is not slow:
+        #     ptr = ptr.next
+        #     slow = slow.next
+        # return ptr
+        slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            if slow is fast:
+            if slow == fast:
                 break
         else:
-            return None  # 无环
-
-        # 第二阶段：一个指针从 head，一个从相遇点，同速前进，再次相遇即入口
+            return None
         ptr = head
         while ptr is not slow:
             ptr = ptr.next
             slow = slow.next
+
         return ptr
 
 

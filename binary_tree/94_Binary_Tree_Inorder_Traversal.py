@@ -48,11 +48,10 @@ class Solution:
 
         # return res
         ans = []
-        stack = []
         curr = root
-        while curr or stack:
+        stack = []
+        while stack or curr:
             while curr:
-                stack.append(curr)
                 curr = curr.left
             curr = stack.pop()
             ans.append(curr.val)

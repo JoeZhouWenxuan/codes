@@ -43,13 +43,12 @@ class Solution:
         # return list(groups.values())
 
         groups = defaultdict(list)
-        for word in strs:
+        for s in strs:
             count = [0] * 26
-            for ch in word:
-                count[ord[ch] - ord['a']] += 1
+            for ch in s:
+                count[ord(ch) - ord('a')] += 1
             key = tuple(count)
-            groups[key].append(word)
-        
+            groups[key].append(s)
         return list(groups.values())
 
 

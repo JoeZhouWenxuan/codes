@@ -23,11 +23,18 @@ class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         # 快慢指针：快指针每次走2步，慢指针每次走1步
         # 若有环，快慢指针必然相遇
+        # slow, fast = head, head
+        # while fast and fast.next:
+        #     slow = slow.next
+        #     fast = fast.next.next
+        #     if slow is fast:
+        #         return True
+        # return False
         slow, fast = head, head
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-            if slow is fast:
+            if fast is slow:
                 return True
         return False
 

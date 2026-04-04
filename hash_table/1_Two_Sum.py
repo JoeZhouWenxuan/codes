@@ -27,7 +27,7 @@ class Solution:
             seed = num - target
             if seed in last_seen:
                 return [last_seen[seed], i]
-            last_seen[num] = 1
+            last_seen[num] = i
         return []
 
 

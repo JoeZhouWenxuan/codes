@@ -26,10 +26,9 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         price_min = float('inf')
         ans = 0
-        for x in prices:
-            price_min = min(price_min, x)
-            ans = max(ans, x - price_min)
-
+        for p in prices:
+            price_min = min(p, price_min)
+            ans = max(ans, p - price_min)
         return ans
     
 if __name__ == "__main__":

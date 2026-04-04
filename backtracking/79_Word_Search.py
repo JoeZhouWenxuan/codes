@@ -40,21 +40,20 @@ class Solution:
 
     #     return False
         m, n = len(board), len(board[0])
+
         def dfs(i, j, k):
             if board[i][j] != word[k]:
                 return False
-            if k == len(word) - 1:
+            if k == len(word):
                 return True
             ch = board[i][j]
             board[i][j] = '#'
             for di, dj in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
                 ni, nj = i+di, j+dj
-                if 0 <= ni < m and 0 <= nj < n and board[ni][nj] != '#':
+                if 0 <= ni < m and 0 <= nj < n and board[i][j] != '#':
                     if dfs(ni, nj, k+1):
-                        # 记得还原
                         board[i][j] = ch
                         return True
-            # 记得还原
             board[i][j] = ch
             return False
         
@@ -62,9 +61,9 @@ class Solution:
             for j in range(n):
                 if dfs(i, j, 0):
                     return True
-                
         return False
 
+        
 if __name__ == "__main__":
     s = Solution()
     print(

@@ -43,21 +43,19 @@ class Solution:
         curr = dummy
         carry = 0
         while l1 or l2 or carry:
-            x = l1.val if l1 else 0
-            y = l2.val if l2 else 0
-            
-            s = x + y + carry
-
-            carry = s // 10
-            curr.next = ListNode(s % 10)
-            curr = curr.next
-
+            val = 0
             if l1:
+                val += l1.val
                 l1 = l1.next
             if l2:
+                val += l2.val
                 l2 = l2.next
+            val += carry
+            carry, digit = divmod(val, 10)
+            curr.next = ListNode(digit)
+            curr = curr.next
         return dummy.next
-            
+
 
 
 
