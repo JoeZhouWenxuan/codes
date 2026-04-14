@@ -14,24 +14,46 @@ from typing import List
 
 class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
-        n = len(nums)
-        max_seen = float("-inf")
-        min_seen = float("inf")
-        left, right = -1, -1
+        # n = len(nums)
+        # max_seen = float("-inf")
+        # min_seen = float("inf")
+        # left, right = -1, -1
 
-        for i in range(n):
-            if nums[i] < max_seen:
+        # for i in range(n):
+        #     if nums[i] < max_seen:
+        #         right = i
+        #     else:
+        #         max_seen = nums[i]
+
+        # for i in range(n - 1, -1, -1):
+        #     if nums[i] > min_seen:
+        #         left = i
+        #     else:
+        #         min_seen = nums[i]
+
+        # return 0 if right == -1 else right - left + 1
+        right = -1
+        max_seen = float('-inf')
+        for i, num in enumerate(nums):
+            if max_seen < num:
+                max_seen = num
+            else:
                 right = i
-            else:
-                max_seen = nums[i]
 
-        for i in range(n - 1, -1, -1):
-            if nums[i] > min_seen:
-                left = i
-            else:
+        if right == -1:
+            return 0
+        
+        left = -1
+        min_seen = float('inf')
+        for i in range(len(nums) - 1, -1, -1):
+            if min_seen > nums[i]:
                 min_seen = nums[i]
+            else:
+                left = i
+        
+        return right - left + 1
 
-        return 0 if right == -1 else right - left + 1
+
 
 
 if __name__ == "__main__":

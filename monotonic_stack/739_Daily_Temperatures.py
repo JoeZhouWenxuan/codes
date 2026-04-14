@@ -25,15 +25,22 @@ class Solution:
         #     stack.append(i)
 
         # return ans
+        # ans = [0] * len(temperatures)
+        # stack = []
+        # for i, temp in enumerate(temperatures):
+        #     while stack and temperatures[stack[-1]] < temp:
+        #         prev = stack.pop()
+        #         ans[prev] = i - prev    # 注意这里不是ans[i] = 
+        #     stack.append(i)
+        # return ans
         ans = [0] * len(temperatures)
         stack = []
         for i, temp in enumerate(temperatures):
             while stack and temperatures[stack[-1]] < temp:
-                prev = stack.pop()
-                ans[prev] = i - prev    # 注意这里不是ans[i] = 
+                pre = stack.pop()
+                ans[pre] = i - pre
             stack.append(i)
         return ans
-
 
 if __name__ == "__main__":
     s = Solution()

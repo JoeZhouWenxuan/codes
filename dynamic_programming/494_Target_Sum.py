@@ -29,18 +29,27 @@ class Solution:
 
         # return dp[subset_sum]
 
+        # total = sum(nums)
+        # if total < abs(target) or (total + target) % 2 != 0:
+        #     return 0
+        # P = (total + target) // 2
+        # # dp[j] 恰好凑出和j的方案数
+        # dp = [0] * (P+1)
+        # dp[0] = 1
+        # for num in nums:
+        #     for j in range(P, num - 1, -1):
+        #         dp[j] += dp[j - num]
+        # return dp[-1]
         total = sum(nums)
         if total < abs(target) or (total + target) % 2 != 0:
             return 0
         P = (total + target) // 2
-        # dp[j] 恰好凑出和j的方案数
-        dp = [0] * (P+1)
+        dp = [0] * (P + 1)
         dp[0] = 1
         for num in nums:
             for j in range(P, num - 1, -1):
                 dp[j] += dp[j - num]
         return dp[-1]
-
 
 if __name__ == "__main__":
     s = Solution()

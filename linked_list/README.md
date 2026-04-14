@@ -10,6 +10,7 @@
 - [19_remove_nth_node_from_end.py](/Users/bytedance/Documents/codes/linked_list/19_remove_nth_node_from_end.py)
 - [21_merge_two_sorted_lists.py](/Users/bytedance/Documents/codes/linked_list/21_merge_two_sorted_lists.py)
 - [23_merge_k_sorted_lists.py](/Users/bytedance/Documents/codes/linked_list/23_merge_k_sorted_lists.py)
+- [24_swap_nodes_in_pairs.py](/Users/bytedance/Documents/codes/linked_list/24_swap_nodes_in_pairs.py)
 - [25_reverse_nodes_in_k_group.py](/Users/bytedance/Documents/codes/linked_list/25_reverse_nodes_in_k_group.py)
 - [138_copy_list_with_random_pointer.py](/Users/bytedance/Documents/codes/linked_list/138_copy_list_with_random_pointer.py)
 - [141_linked_list_cycle.py](/Users/bytedance/Documents/codes/linked_list/141_linked_list_cycle.py)

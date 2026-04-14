@@ -48,13 +48,12 @@ class Solution:
                 return None
             left_tail = dfs(node.left)
             right_tail = dfs(node.right)
-
             if left_tail:
-                left_tail = node.right
-                node.right = left_tail.left
-                left_tail.left = None
-            
+                left_tail.right = node.right
+                node.right = node.left
+                node.left = None
             return right_tail or left_tail or node
+        dfs(root)
 
     # def flatten(self, root):
     #     if not root:

@@ -25,16 +25,25 @@ class Solution:
         p: Optional[TreeNode],
         q: Optional[TreeNode],
     ) -> Optional[TreeNode]:
-        if not root or root == p or root == q:
-            return root
+        # if not root or root == p or root == q:
+        #     return root
 
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
+        # left = self.lowestCommonAncestor(root.left, p, q)
+        # right = self.lowestCommonAncestor(root.right, p, q)
 
-        if left and right:
+        # if left and right:
+        #     return root
+        # return left or right
+
+        if not root or root is p or root is q: # 我已经在当前子树里找到一个目标节点了，你上层自己决定怎么用它
             return root
+        left = self.lowestCommonAncestor(root.left, p, q) # 去左子树看看有没有找到 p / q / 最近公共祖先
+        right = self.lowestCommonAncestor(root.right, p, q) # 右子树看看有没有找到 p / q / 最近公共祖先
+        if left and right:  # 两个都不为空，p和q分别在当前节点左右子树，则root是最近
+            return root
+        
         return left or right
-
+        
 
 def build_tree(values):
     if not values:

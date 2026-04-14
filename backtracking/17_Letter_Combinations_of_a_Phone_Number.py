@@ -57,17 +57,17 @@ class Solution:
         }
         if not digits:
             return []
-        path = []
+        
         ans = []
+        path = []
         def dfs(index):
-            if index == len(digits):
-                ans.append(path[:])
-                return
-            for i, ch in enumerate(mapping[digits[index]]):
+            if index == len(digits) - 1:
+                ans.append("".join(path[:]))
+                return 
+            for i, ch in mapping[digits[index]]:
                 path.append(ch)
-                dfs(index+1)
+                dfs(index+1)    # 这里是digits的下标index下一个，切记不是遍历mapping中的字符的下一个
                 path.pop()
-
         dfs(0)
         return ans
 

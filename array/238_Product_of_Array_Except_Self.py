@@ -12,20 +12,35 @@ from typing import List
 
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        # n = len(nums)
+        # ans = [1] * n
+
+        # prefix = 1
+        # for i in range(n):
+        #     ans[i] = prefix
+        #     prefix *= nums[i]
+
+        # suffix = 1
+        # for i in range(n - 1, -1, -1):
+        #     ans[i] *= suffix
+        #     suffix *= nums[i]
+
+        # return ans
         n = len(nums)
         ans = [1] * n
-
         prefix = 1
         for i in range(n):
-            ans[i] = prefix
+            ans[i] = prefix # 注意赋值答案，然后更新prefix
             prefix *= nums[i]
-
+        
         suffix = 1
         for i in range(n - 1, -1, -1):
             ans[i] *= suffix
             suffix *= nums[i]
-
+        
         return ans
+
+
 
 
 if __name__ == "__main__":

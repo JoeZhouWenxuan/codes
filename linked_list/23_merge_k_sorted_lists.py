@@ -56,35 +56,53 @@ class Solution:
 # 时间 O(n log k)，空间 O(log k) 递归栈
 class Solution2:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists:
-            return None
-        return self._merge_range(lists, 0, len(lists) - 1)
+        # if not lists:
+        #     return None
+        # return self._merge_range(lists, 0, len(lists) - 1)
 
     # def _merge_range(self, lists, l, r):
     #     if l == r:
     #         return lists[l]
-    #     mid = (l + r) // 2
+    #     mid = (l+r) // 2
     #     left = self._merge_range(lists, l, mid)
-    #     right = self._merge_range(lists, mid + 1, r)
+    #     right = self._merge_range(lists, mid+1, r)
     #     return self._merge_two(left, right)
+    
+    # def _merge_two(self, l1, l2):
+    #     dummy = ListNode()
+    #     cur = dummy
+    #     while l1 and l2:
+    #         if l1.val <= l2.val:
+    #             cur.next, l1 = l1, l1.next
+    #         else:
+    #             cur.next, l2 = l2, l2.next
+    #         cur = cur.next
+    #     cur.next = l1 or l2
+    #     return dummy.next
+        if not lists:
+            return None
+        return self._merge_range(list, 0, len(lists) - 1)
+        
     def _merge_range(self, lists, l, r):
         if l == r:
-            return lists[l]
-        mid = (l+r) // 2
+            return list[l]
+        mid = (l + r) // 2
         left = self._merge_range(lists, l, mid)
         right = self._merge_range(lists, mid+1, r)
         return self._merge_two(left, right)
     
-    def _merge_two(self, l1, l2):
+    def _merge_two(self, left, right):
         dummy = ListNode()
-        cur = dummy
-        while l1 and l2:
-            if l1.val <= l2.val:
-                cur.next, l1 = l1, l1.next
+        curr = dummy
+        while left and right:
+            if left.val < right.val:
+                curr.next = left
+                left = left.next
             else:
-                cur.next, l2 = l2, l2.next
-            cur = cur.next
-        cur.next = l1 or l2
+                curr.next = right
+                right = right.next
+            curr = curr.next
+        curr.next = left or right
         return dummy.next
 
 

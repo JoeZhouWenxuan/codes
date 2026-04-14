@@ -12,41 +12,54 @@ from typing import List
 import heapq
 import random
 
+
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        # heap = []
+        # 解法一：小根堆
+        # 维护一个大小为 k 的小根堆，堆顶始终是“当前前 k 大元素里最小的那个”。
+        heap: List[int] = []
 
-        # for num in nums:
-        #     heapq.heappush(heap, num)
-        #     if len(heap) > k:
-        #         heapq.heappop(heap)
+        for num in nums:
+            heapq.heappush(heap, num)
+            if len(heap) > k:
+                heapq.heappop(heap)
 
-        # return heap[0]
-        def quick_select(l, r, k):
-            pivot = random.randint(l, r)
-            pivot_v = nums[pivot]
-            nums[r], nums[pivot]= nums[pivot], nums[r]
+        return heap[0]
 
-            j = l
-            for i in range(l, r):
-                if nums[i] > pivot_v:
+    def findKthLargestQuickSelect(self, nums: List[int], k: int) -> int:
+        # 解法二：快选
+        # 按“从大到小”分区，partition 后：
+        # - 左边都比 pivot 大
+        # - 右边都比 pivot 小或等于
+        # 如果 pivot 正好落在下标 k - 1，上面就是第 k 大元素。
+        def partition(l, r):
+            index = random.randint(l, r)
+
+            pivot_value = nums[index]
+            nums[index], nums[r] = nums[r], nums[index]
+            i = l
+            for j in range(l, r):
+                if nums[j] > pivot_value:
                     nums[i], nums[j] = nums[j], nums[i]
-                    j += 1
-            nums[i], nums[r] = nums[r], nums[i]
+                    i += 1
+            nums[r], nums[i] = nums[i], nums[r]
+            return i
 
-            rank = i - l + 1
-
-            if rank == k:
-                return nums[i]
-            elif rank < k:
-                return quick_select(i+1, r, k - rank)
+        left, right = 0, len(nums) - 1
+        target = k - 1
+        while True:
+            index = partition(left, right)
+            if index == target:
+                return nums[index]
+            elif index < target:
+                left = index + 1
             else:
-                return quick_select(l, i-1, k)
-            
-        return quick_select(0, len(nums)-1, k)
+                right = index - 1
 
 
 if __name__ == "__main__":
     s = Solution()
     print(s.findKthLargest([3, 2, 1, 5, 6, 4], 2))              # 5
     print(s.findKthLargest([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))     # 4
+    print(s.findKthLargestQuickSelect([3, 2, 1, 5, 6, 4], 2))           # 5
+    print(s.findKthLargestQuickSelect([3, 2, 3, 1, 2, 4, 5, 5, 6], 4))  # 4

@@ -18,8 +18,6 @@ class Solution:
         '''
         这题的代码核心是“区间 DP + 枚举最后一个被戳破的气球”
         '''
-        arr = [1] + nums + [1]
-        n = len(arr)
         '''
         定义：
         dp[left][right]
@@ -53,18 +51,32 @@ class Solution:
 
         arr[left] * arr[last] * arr[right]
         '''
-        dp = [[0] * n for _ in range(n)]
+        # arr = [1] + nums + [1]
+        # n = len(arr)
+        # dp = [[0] * n for _ in range(n)]
 
-        for length in range(2, n):
-            for left in range(0, n - length):
-                right = left + length
+        # for length in range(2, n):
+        #     for left in range(0, n - length):
+        #         right = left + length
+        #         for last in range(left + 1, right):
+        #             dp[left][right] = max(
+        #                 dp[left][right],
+        #                 dp[left][last] + dp[last][right] + arr[left] * arr[last] * arr[right],
+        #             )
+
+        # return dp[0][n - 1]
+        arr = [1] + nums + [1]
+        n = len(arr)
+        dp = [[0] * n for _ in range(n)]
+        for len in range(2, n):
+            for left in range(0, n - len):
+                right = left + len
                 for last in range(left + 1, right):
                     dp[left][right] = max(
-                        dp[left][right],
-                        dp[left][last] + dp[last][right] + arr[left] * arr[last] * arr[right],
+                        dp[left][right], 
+                        dp[left][last] + dp[last][right] + arr[left]* arr[last]* arr[right]
                     )
-
-        return dp[0][n - 1]
+        return dp[0][n-1]
 
 
 if __name__ == "__main__":
