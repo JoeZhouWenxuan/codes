@@ -78,7 +78,7 @@ class Solution:
                     if counts[left_char] > 0:
                         remain += 1
 
-        return s[ans_start, ans_start + ans_len] if ans_len != float('inf') else ""
+        return s[ans_start: ans_start + ans_len] if ans_len != float('inf') else ""
 
 
     

@@ -15,19 +15,29 @@ from typing import List
 
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
+        # 荷兰国旗问题，使用三个指针原地划分 0、1、2。
+        # [0, left) 都是 0
+        # [left, i) 都是 1
+        # (right, len(nums) - 1] 都是 2
+        # [i, right] 是还未处理的区域
         left = 0
         i = 0
         right = len(nums) - 1
 
         while i <= right:
             if nums[i] == 0:
+                # 当前是 0，应该放到左侧 0 区间的末尾。
+                # 交换后 nums[i] 来自 [left, i) 的 1 区间，可以放心继续向后处理。
                 nums[left], nums[i] = nums[i], nums[left]
                 left += 1
                 i += 1
             elif nums[i] == 2:
+                # 当前是 2，应该放到右侧 2 区间的开头。
+                # 交换过来的 nums[i] 还没检查过，所以 i 不能移动。
                 nums[right], nums[i] = nums[i], nums[right]
                 right -= 1
             else:
+                # 当前是 1，已经在中间区域，直接继续向后扫描。
                 i += 1
 
 

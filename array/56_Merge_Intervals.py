@@ -13,25 +13,26 @@ from typing import List
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        # 先按区间左端点排序，这样只需要和 merged 中最后一个区间比较。
+        # intervals.sort(key=lambda x: x[0])
+        # merged = []
+
+        # for interval in intervals:
+        #     # 如果 merged 为空，或者当前区间和最后一个已合并区间没有重叠，
+        #     # 就直接把当前区间加入结果。
+        #     if not merged or merged[-1][1] < interval[0]:
+        #         merged.append(interval[:])
+        #     else:
+        #         # 否则两个区间有重叠，更新最后一个区间的右端点。
+        #         merged[-1][1] = max(merged[-1][1], interval[1])
         intervals.sort(key=lambda x: x[0])
         merged = []
-
         for interval in intervals:
-            if not merged or merged[-1][1] < interval[0]:
+            if not merged or merged[-1][-1] < interval[0]:
                 merged.append(interval[:])
             else:
-                merged[-1][1] = max(merged[-1][1], interval[1])
+                merged[-1][-1] = max(merged[-1][-1], interval[1])
 
-        return merged
-
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
-        merged = []
-        for interval in intervals:
-            if not merged or merged[-1][1] < interval[0]:
-                merged.append(interval)
-            elif merged[-1][1] > interval[0]:
-                merged[-1][1] = max(merged[-1][1], interval[1])
         return merged
             
 

@@ -28,6 +28,21 @@ class Solution:
 
         backtrack(1)
         return ans
+    
+        # ans = []
+        # path = []
+
+        # def dfs(start):
+        #     if len(path) == k:
+        #         ans.append(path[:])
+        #         return
+            
+        #     for i in range(start, n + 1):
+        #         path.append(i)
+        #         dfs(i + 1)
+        #         path.pop()
+        # dfs(1)
+        # return ans
 
 
 if __name__ == "__main__":

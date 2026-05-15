@@ -29,15 +29,26 @@ class Solution:
     #     return slow
 
     def findDuplicate(self, nums: List[int]) -> int:
+        # 把数组看成链表：下标 i 指向 nums[i]。
+        # 因为 nums 中的值都在 [1, n]，所以每次跳转 nums[i] 都会落在合法下标范围内。
+        # 如果某个数字重复，说明有多个下标指向同一个位置，链表中一定会形成环。
+        # 重复的数字就是这个环的入口。
         slow = nums[0]
         fast = nums[nums[0]]
+
+        # 第一阶段：快慢指针在环内相遇。
+        # slow 每次走一步，fast 每次走两步。
         while slow != fast:
             slow = nums[slow]
             fast = nums[nums[fast]]
-        slow2 = nums[0]
+
+        # 第二阶段：从下标 0 和相遇点同时出发，每次都走一步。
+        # 两个指针再次相遇的位置就是环入口，也就是重复的数字。
+        slow2 = 0 # **注意，这里是0
         while slow != slow2:
             slow = nums[slow]
             slow2 = nums[slow2]
+
         return slow
 
 if __name__ == "__main__":

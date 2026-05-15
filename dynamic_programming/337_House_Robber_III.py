@@ -35,18 +35,36 @@ class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
         def dfs(node: Optional[TreeNode]):
             if not node:
+                # 空节点没有金额，偷和不偷的收益都为 0
                 return 0, 0
 
+            # left/right 都是二元组：
+            # 第一个值表示偷对应子节点时，该子树能获得的最大收益
+            # 第二个值表示不偷对应子节点时，该子树能获得的最大收益
             left = dfs(node.left)
             right = dfs(node.right)
 
-            # 偷当前节点，则左右孩子都不能偷
+            # 偷当前节点，则左右孩子都不能偷，只能取左右子树“不偷孩子”的状态
             rob_current = node.val + left[1] + right[1]
-            # 不偷当前节点，则左右孩子可偷可不偷，分别取最大
+            # 不偷当前节点，则左右孩子可偷可不偷，分别取左右子树的最大收益
             skip_current = max(left) + max(right)
+            # 返回当前子树在“偷当前节点”和“不偷当前节点”两种状态下的最优收益
             return rob_current, skip_current
 
+        # 根节点没有父节点限制，最终可以偷也可以不偷，取最大收益
         return max(dfs(root))
+
+        # def dfs(node):
+        #     if not node:
+        #         return 0, 0
+        #     left = dfs(node.left)
+        #     right = dfs(node.right)
+
+        #     rob_curr = node.val + left[1] + right[1]
+        #     skip_curr = max(left) + max(right)
+        #     return rob_curr, skip_curr
+        
+        # return max(dfs(root))
 
 
 def build_tree(values):

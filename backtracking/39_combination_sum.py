@@ -43,20 +43,36 @@ class Solution:
     #     backtrack(0, [], target)
     #     return res
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        ans = []
+        # ans = []
+        # candidates.sort()
+        # path = []
+        # def dfs(index, remaining):
+        #     if remaining == 0:
+        #         ans.append(path[:])
+        #         return
+        #     for i in range(index, len(candidates)):
+        #         if candidates[i] > remaining:
+        #             break
+        #         path.append(candidates[i])
+        #         dfs(i, remaining - candidates[i])
+        #         path.pop()
+        # dfs(0, target)
+        # return ans
         candidates.sort()
+        ans = []
         path = []
         def dfs(index, remaining):
             if remaining == 0:
-                ans.append(path[:])
-                return
+                ans.append(path[: ])
+                return 
             for i in range(index, len(candidates)):
                 if candidates[i] > remaining:
                     break
                 path.append(candidates[i])
                 dfs(i, remaining - candidates[i])
                 path.pop()
-
+                
+        dfs(0, target)
         return ans
 
 

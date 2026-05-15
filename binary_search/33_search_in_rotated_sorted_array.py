@@ -39,22 +39,29 @@ class Solution:
     #     return -1
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
-        while left < right:
-            mid = (left+right) // 2
+        while left <= right:
+            mid = (left + right) // 2
             if nums[mid] == target:
                 return mid
-            
+
+            # 每次二分后，左右两边至少有一边是有序的。
+            # 先判断左半段 [left, mid] 是否有序。
             if nums[left] <= nums[mid]:
+                # target 落在左半段的有序范围内，继续去左边找。
                 if nums[left] <= target < nums[mid]:
                     right = mid - 1
                 else:
+                    # 否则 target 只能在右半段。
                     left = mid + 1
             else:
-                if nums[left] < target <= nums[mid]:
+                # 否则右半段 [mid, right] 一定有序。
+                # target 落在右半段的有序范围内，继续去右边找。
+                if nums[mid] < target <= nums[right]:
                     left = mid + 1
                 else:
+                    # 否则 target 只能在左半段。
                     right = mid - 1
-        return - 1 
+        return -1 
 
 if __name__ == "__main__":
     s = Solution()

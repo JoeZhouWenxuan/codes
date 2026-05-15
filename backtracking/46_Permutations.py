@@ -35,19 +35,74 @@ class Solution:
         # return ans
 
         ans = []
+        # path 保存当前正在构造的一条排列。
         path = []
+        # used[i] 表示 nums[i] 是否已经被放入当前 path，避免同一个位置的元素重复使用。
         used = [False] * len(nums)
+
         def dfs():
+            # 当前排列长度等于 nums 长度，说明已经选完所有数字，记录一份结果。
             if len(path) == len(nums):
                 ans.append(path[:])
                 return
+
+            # 每一层都从所有数字中尝试选择一个还没用过的数字。
             for i, num in enumerate(nums):
                 if not used[i]:
                     path.append(num)
                     used[i] = True
                     dfs()
+                    # 回溯：撤销本层选择，恢复现场，继续尝试下一个数字。
                     used[i] = False
                     path.pop()
+
+        dfs()
+        return ans
+    
+        ans = []
+        path = []
+        used = [False] * len(nums)
+
+        def dfs():
+            if len(path) == len(nums):
+                ans.append(path[:])
+                return
+            for i in range(len(nums)):
+                if used[i]:
+                    continue
+                used[i] = True
+                path.append(nums[i])
+                dfs()
+                path.pop()
+                used[i] = False
+        dfs()
+        return ans
+    
+    def permuteUnique(nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        ans = []
+        path = []
+        used = [False] * len(nums)
+
+        def dfs():
+            if len(path) == len(nums):
+                ans.append(path[:])
+                return
+
+            for i, num in enumerate(nums):
+                if used[i]:
+                    continue
+
+                # 同一层中，如果前一个相同数字还没被使用，
+                # 说明当前 num 会产生重复排列，跳过。
+                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                    continue
+
+                used[i] = True
+                path.append(num)
+                dfs()
+                path.pop()
+                used[i] = False
 
         dfs()
         return ans

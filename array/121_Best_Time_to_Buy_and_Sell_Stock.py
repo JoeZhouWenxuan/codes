@@ -24,11 +24,11 @@ class Solution:
         return ans
 
     def maxProfit(self, prices: List[int]) -> int:
-        price_min = float('inf')
+        min_price = float('-inf')
         ans = 0
         for p in prices:
-            price_min = min(p, price_min)
-            ans = max(ans, p - price_min)
+            min_price = min(p, min_price)
+            ans = max(ans, p - min_price)
         return ans
     
 if __name__ == "__main__":

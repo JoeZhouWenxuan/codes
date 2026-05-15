@@ -14,16 +14,51 @@ from typing import List
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+        # nums.sort()
+        # n = len(nums)
+        # ans = []
+
+        # for i in range(n - 2):
+        #     if i > 0 and nums[i] == nums[i - 1]:
+        #         continue
+        #     if nums[i] > 0:
+        #         break
+        #     # 当前 i 加上后面最小的两个数都大于 0，后续 i 更大，不可能再凑出 0。
+        #     if nums[i] + nums[i + 1] + nums[i + 2] > 0:
+        #         break
+        #     # 当前 i 加上最大的两个数都小于 0，说明 nums[i] 太小，换下一个 i。
+        #     if nums[i] + nums[n - 2] + nums[n - 1] < 0:
+        #         continue
+
+        #     left, right = i + 1, n - 1
+        #     while left < right:
+        #         total = nums[i] + nums[left] + nums[right]
+        #         if total < 0:
+        #             left += 1
+        #         elif total > 0:
+        #             right -= 1
+        #         else:
+        #             ans.append([nums[i], nums[left], nums[right]])
+        #             while left < right and nums[left] == nums[left + 1]:
+        #                 left += 1
+        #             while left < right and nums[right] == nums[right - 1]:
+        #                 right -= 1
+        #             left += 1
+        #             right -= 1
+
+        # return ans
         nums.sort()
         n = len(nums)
         ans = []
-
         for i in range(n - 2):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
             if nums[i] > 0:
                 break
-
+            if nums[i] + nums[i + 1] + nums[i + 2] > 0:
+                break 
+            if nums[i] + nums[n - 1] + nums[n - 2] < 0:
+                continue
             left, right = i + 1, n - 1
             while left < right:
                 total = nums[i] + nums[left] + nums[right]
@@ -39,7 +74,6 @@ class Solution:
                         right -= 1
                     left += 1
                     right -= 1
-
         return ans
 
 

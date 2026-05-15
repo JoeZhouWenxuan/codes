@@ -33,22 +33,38 @@ class Solution:
 
         # return dp[rows][cols]
         m, n = len(s), len(p)
+        # dp[i][j] 表示 s 的前 i 个字符 s[:i] 是否能被 p 的前 j 个字符 p[:j] 匹配。
+        # i 或 j 为 0 时表示空字符串前缀；最终答案是 dp[m][n]。
+        # dp = [[False] * (n + 1) for _ in range(m + 1)]
+        # dp[0][0] = True
+        # for j in range(2, n+1):
+        #     if p[j-1] == '*':
+        #         dp[0][j] = dp[0][j-2]
+
+        # for i in range(1, m+1):
+        #     for j in range(1, n+1):
+        #         if p[j-1] == '*':
+        #             dp[i][j] = dp[i][j-2]
+        #             if s[i-1] == p[j-2] or p[j-2] == '.':
+        #                 dp[i][j] = dp[i][j] or dp[i-1][j]
+
+        #         elif s[i-1] == p[j-1] or p[j-1] == '.':
+        #             dp[i][j] = dp[i-1][j-1]
+
+        # return dp[-1][-1]
+
         dp = [[False] * (n + 1) for _ in range(m + 1)]
-        dp[0][0] = True
-        for j in range(2, n+1):
-            if p[j-1] == '*':
-                dp[0][j] = dp[0][j-2]
-
-        for i in range(1, m+1):
-            for j in range(1, n+1):
-                if p[j-1] == '*':
-                    dp[i][j] = dp[i][j-2]
-                    if s[i-1] == p[j-2] or p[j-2] == '.':
-                        dp[i][j] = dp[i][j] or dp[i-1][j]
-
-                elif s[i-1] == p[j-1] or p[j-1] == '.':
-                    dp[i][j] = dp[i-1][j-1]
-
+        for j in range(2, n + 1):
+            if p[j - 1] == '*':
+                dp[0][j] = dp[0][j - 2]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if p[j - 1] == '*':
+                    dp[i][j] = dp[i][j - 2]
+                    if s[i - 1] == p[j - 2] or p[j - 2] == '.':
+                        dp[i][j] = dp[i][j] or dp[i - 1][j]
+                elif s[i - 1] == p[j - 1] or p[j - 1] == '.':
+                    dp[i][j] = dp[i - 1][j - 1]
         return dp[-1][-1]
 
                 

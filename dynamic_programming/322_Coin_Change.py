@@ -20,9 +20,16 @@ class Solution:
         #         dp[total] = min(dp[total], dp[total-coin] + 1)
         # return dp[-1] if dp[-1] != float('inf') else -1
 
+        # dp[total] 表示凑出金额 total 所需要的最少硬币个数。
+        # 初始化为无穷大，表示当前还不知道如何凑出这个金额。
+        # 最多只可能用 amount 个 1 元硬币，所以无穷大也可以写成 amount + 1。
         dp = [0] + [float('inf')] * amount
-        for coin in coin:
+        # 凑出金额 0 不需要任何硬币，因此 dp[0] = 0，这是后续状态转移的起点。
+        for coin in coins:
+            # 硬币可以重复使用，所以 total 正序遍历，这是完全背包的写法。
             for total in range(coin, amount+1):
+                # 如果选择当前 coin，那么需要先凑出 total - coin，
+                # 再加上当前这 1 枚硬币。
                 dp[total] = min(dp[total], dp[total-coin] + 1)
 
         return dp[-1] if dp[-1] != float('inf') else -1

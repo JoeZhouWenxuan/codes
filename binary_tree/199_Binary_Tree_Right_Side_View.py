@@ -22,11 +22,27 @@ class TreeNode:
 
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        # if not root:
+        #     return []
+
+        # res = []
+        # queue = deque([root])
+        # while queue:
+        #     size = len(queue)
+        #     for i in range(size):
+        #         node = queue.popleft()
+        #         if node.left:
+        #             queue.append(node.left)
+        #         if node.right:
+        #             queue.append(node.right)
+        #         if i == size - 1:
+        #             res.append(node.val)
+        # return res
+
         if not root:
             return []
-
-        res = []
         queue = deque([root])
+        ans = []
         while queue:
             size = len(queue)
             for i in range(size):
@@ -36,8 +52,8 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
                 if i == size - 1:
-                    res.append(node.val)
-        return res
+                    ans.append(node.val)
+        return ans
 
 
 def build_tree(values):

@@ -27,13 +27,19 @@ class Solution:
             if not node:
                 return 0, 0
 
+            # dfs(node) 返回两个状态：
+            # 第一个值表示偷当前 node 时，以 node 为根的子树能偷到的最大金额。
+            # 第二个值表示不偷当前 node 时，以 node 为根的子树能偷到的最大金额。
             left = dfs(node.left)
             right = dfs(node.right)
 
+            # 偷当前节点，则左右孩子都不能偷，只能取左右孩子“不偷”的状态。
             rob_current = node.val + left[1] + right[1]
+            # 不偷当前节点，则左右孩子可偷可不偷，分别取它们两个状态中的最大值。
             skip_current = max(left) + max(right)
             return rob_current, skip_current
 
+        # 根节点最终可以偷也可以不偷，取两种情况的最大值。
         return max(dfs(root))
 
 

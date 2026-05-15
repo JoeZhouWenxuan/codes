@@ -17,7 +17,7 @@ class SolutionExpand:
                 left -= 1
                 right += 1
             # 退出时 s[left+1..right-1] 是回文
-            return s[left + 1:right]
+            return s[left + 1: right]
 
         res = ""
         for i in range(len(s)):

@@ -13,17 +13,27 @@ from typing import List
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
+        # total = sum(nums)
+        # if total % 2 != 0:
+        #     return False
+        # target = total // 2
+        # # dp[i] 是否可以恰好凑出和 i
+        # dp = [True] + [False] * target
+
+        # for num in nums:
+        #     for total in range(target, num - 1, -1):
+        #         dp[total] = dp[total] or dp[total-num]
+
+        # return dp[-1]
+
         total = sum(nums)
-        if total % 2 != 0:
+        if total % 2:
             return False
         target = total // 2
-        # dp[i] 是否可以恰好凑出和 i
         dp = [True] + [False] * target
-
         for num in nums:
-            for total in range(target, num - 1, -1):
-                dp[total] = dp[total] or dp[total-num]
-
+            for j in range(target, num - 1, -1):
+                dp[j] = dp[j] or dp[j - num]
         return dp[-1]
         
 if __name__ == "__main__":

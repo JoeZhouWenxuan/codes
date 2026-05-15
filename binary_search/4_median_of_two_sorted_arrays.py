@@ -5,6 +5,9 @@
 # 给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。
 # 请你找出并返回这两个正序数组的 中位数。
 # 要求时间复杂度为 O(log(m+n))。
+# 当前实现：
+# 时间复杂度 O(log(min(m, n)))，因为只在较短数组上做二分查找。
+# 空间复杂度 O(1)，只使用常数额外变量。
 #
 # 示例：
 # 输入：nums1 = [1,3], nums2 = [2]         输出：2.00000
@@ -75,28 +78,30 @@ class Solution:
     def f2(self, nums1, nums2):
         if len(nums1) > len(nums2):
             nums1, nums2 = nums2, nums1
-
         m, n = len(nums1), len(nums2)
-        half = (m+n+1) // 2
-        left = 0, right = m
-        while left < right:
-            i = (left+right)//2
-            j = half - j
+        left, right = 0, m
+        half = (m + n + 1) // 2
+        while left <= right:
+            i = (left + right) // 2
+            j = half - i
+            nums1_left_max = nums1[i - 1] if i > 0 else float('-inf')
+            nums1_right_min = nums1[i] if i < m else float('inf')
+            nums2_left_max = nums2[j - 1] if j > 0 else float('-inf')
+            nums2_right_min = nums2[j] if j < n else float('inf')
 
-            nums1_left_max = nums1[i-1] if i != 0 else float('-inf')
-            nums1_right_min = nums2[i] if i != m else float('inf')
-            nums2_left_max = nums2[j-1] if j != 0 else float('-inf')
-            nums2_right_min = nums2[j] if j != n else float('inf')
             if nums1_left_max <= nums2_right_min and nums2_left_max <= nums1_right_min:
                 left_max = max(nums1_left_max, nums2_left_max)
-                if (m+n) % 2 == 1:
-                    return left_max
+                if (m + n) %  2:
+                    return float(left_max)
                 right_min = min(nums1_right_min, nums2_right_min)
-                return (left_max + right_min) // 2
+                return (left_max + right_min) / 2.0
             elif nums1_left_max > nums2_right_min:
-                right -= 1
+                right = i - 1
             else:
-                left += 1
+                left = i + 1
+
+        return 0
+
             
 
 if __name__ == "__main__":

@@ -22,19 +22,20 @@ class ListNode:
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # dummy 指向头节点前面，方便统一处理“删除头节点”的情况。
         dummy = ListNode(0, head)
         fast = slow = dummy
 
-        # 快指针先走 n+1 步
-        for _ in range(n + 1):
+        # fast 先走 n 步，让 fast 和 slow 之间相隔 n 个节点。
+        for _ in range(n):
             fast = fast.next
 
-        # 同步前进直到快指针到末尾
-        while fast:
+        # 当 fast 到达最后一个节点时，slow 正好停在待删除节点的前一个节点。
+        while fast.next:
             fast = fast.next
             slow = slow.next
 
-        # slow 此时是待删节点的前驱
+        # 删除 slow 后面的节点，也就是倒数第 n 个节点。
         slow.next = slow.next.next
         return dummy.next
 
@@ -53,11 +54,27 @@ class Solution:
         # return dummy.next
         dummy = ListNode(0, head)
         slow = fast = dummy
+        # fast 先走 n 步，让 slow 和 fast 保持 n 个节点的距离。
         for _ in range(n):
             fast = fast.next
+        # fast 到达尾节点时，slow 位于待删节点的前驱。
         while fast.next:
             fast = fast.next
             slow = slow.next
+
+        # 跳过待删节点。
+        slow.next = slow.next.next
+
+        return dummy.next
+    
+        dummy = ListNode(0, head)
+        slow = fast = dummy
+        for _ in range(n):
+            fast = fast.next
+
+        while fast.next:
+            slow = slow.next
+            fast = fast.next
 
         slow.next = slow.next.next
 

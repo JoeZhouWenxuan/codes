@@ -144,24 +144,40 @@ class Solution:
 
 
     def postorderTraversalIterativePrev(self, root: Optional[TreeNode]) -> List[int]:
-        res = []
-        stack = []
+        # res = []
+        # stack = []
+        # prev = None
+        # current = root
+
+        # while current or stack:
+        #     while current:
+        #         stack.append(current)
+        #         current = current.left
+
+        #     node = stack[-1]
+        #     if node.right and prev != node.right:
+        #         current = node.right
+        #     else:
+        #         res.append(node.val)
+        #         prev = stack.pop()
+
+        # return res
+
+        curr = root
         prev = None
-        current = root
-
-        while current or stack:
-            while current:
-                stack.append(current)
-                current = current.left
-
+        stack = []
+        ans = []
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
             node = stack[-1]
-            if node.right and prev != node.right:
-                current = node.right
+            if node.right and node.right != prev:
+                curr = node.right
             else:
-                res.append(node.val)
+                ans.append(node.val)
                 prev = stack.pop()
-
-        return res
+        return ans
 
     def postorderTraversalIterativeTwoStacks(self, root: Optional[TreeNode]) -> List[int]:
         if not root:

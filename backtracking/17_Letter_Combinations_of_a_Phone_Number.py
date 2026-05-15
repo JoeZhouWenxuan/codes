@@ -55,22 +55,35 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
+        # if not digits:
+        #     return []
+        
+        # ans = []
+        # path = []
+        # def dfs(index):
+        #     if index == len(digits) - 1:
+        #         ans.append("".join(path[:]))
+        #         return 
+        #     for i, ch in mapping[digits[index]]:
+        #         path.append(ch)
+        #         dfs(index+1)    # 这里是digits的下标index下一个，切记不是遍历mapping中的字符的下一个
+        #         path.pop()
+        # dfs(0)
+        # return ans
         if not digits:
             return []
-        
-        ans = []
         path = []
+        ans = []
         def dfs(index):
             if index == len(digits) - 1:
-                ans.append("".join(path[:]))
-                return 
-            for i, ch in mapping[digits[index]]:
+                ans.push("".join(path))
+                return
+            for ch in mapping[digits[index]]:
                 path.append(ch)
-                dfs(index+1)    # 这里是digits的下标index下一个，切记不是遍历mapping中的字符的下一个
+                dfs(index + 1)
                 path.pop()
         dfs(0)
         return ans
-
 
 if __name__ == "__main__":
     s = Solution()
