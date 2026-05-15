@@ -38,7 +38,7 @@ class Solution:
         #             max_side = max(max_side, dp[i][j])
 
         # return max_side * max_side
-        max_size = 0
+        max_side = 0
         m, n = len(matrix), len(matrix[0])
         dp = [[0] * (n+1) for _ in range(m+1)]
         for i in range(1, m+1):

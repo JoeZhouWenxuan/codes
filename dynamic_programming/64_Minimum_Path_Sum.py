@@ -30,16 +30,24 @@ class Solution:
 
         # return dp[-1]
         m, n = len(grid), len(grid[0])
-        dp = [0] * n 
+        # 一维压缩 DP：
+        # dp[j] 表示走到当前行第 j 列时的最小路径和。
+        dp = [0] * n
         for i in range(m):
             for j in range(n):
                 if i == 0 and j == 0:
+                    # 起点只能从自己开始，路径和就是 grid[0][0]。
                     dp[j] = grid[i][j]
                 elif i == 0:
+                    # 第一行只能从左边走过来。
                     dp[j] = dp[j-1] + grid[i][j]
                 elif j == 0:
-                    dp[j] += dp[j]  + grid[i][j]
+                    # 第一列只能从上边走下来。
+                    # dp[j] 还保存着上一行同一列的最小路径和。
+                    dp[j] += grid[i][j]
                 else:
+                    # 其他位置可以从上方或左方过来：
+                    # dp[j] 是上方的最小路径和，dp[j-1] 是左方的最小路径和。
                     dp[j] = min(dp[j], dp[j-1]) + grid[i][j]
         return dp[-1]
 

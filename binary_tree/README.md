@@ -20,6 +20,7 @@
 - [199_Binary_Tree_Right_Side_View.py](/Users/bytedance/Documents/codes/binary_tree/199_Binary_Tree_Right_Side_View.py)
 - [226_Invert_Binary_Tree.py](/Users/bytedance/Documents/codes/binary_tree/226_Invert_Binary_Tree.py)
 - [230_Kth_Smallest_Element_in_a_BST.py](/Users/bytedance/Documents/codes/binary_tree/230_Kth_Smallest_Element_in_a_BST.py)
+- [235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree.py](/Users/bytedance/Documents/codes/binary_tree/235_Lowest_Common_Ancestor_of_a_Binary_Search_Tree.py)
 - [236_Lowest_Common_Ancestor_of_a_Binary_Tree.py](/Users/bytedance/Documents/codes/binary_tree/236_Lowest_Common_Ancestor_of_a_Binary_Tree.py)
 - [297_Serialize_and_Deserialize_Binary_Tree.py](/Users/bytedance/Documents/codes/binary_tree/297_Serialize_and_Deserialize_Binary_Tree.py)
 - [337_House_Robber_III.py](/Users/bytedance/Documents/codes/binary_tree/337_House_Robber_III.py)

@@ -4,6 +4,7 @@
 
 题解总表：
 - [LeetCode_热题100_动态规划题解.md](/Users/bytedance/Documents/codes/dynamic_programming/LeetCode_热题100_动态规划题解.md)
+- [Climbing_Stairs_专题.md](/Users/bytedance/Documents/codes/dynamic_programming/Climbing_Stairs_专题.md)
 
 已整理文件：
 - [10_Regular_Expression_Matching.py](/Users/bytedance/Documents/codes/dynamic_programming/10_Regular_Expression_Matching.py)
@@ -14,6 +15,10 @@
 - [62_Unique_Paths.py](/Users/bytedance/Documents/codes/dynamic_programming/62_Unique_Paths.py)
 - [64_Minimum_Path_Sum.py](/Users/bytedance/Documents/codes/dynamic_programming/64_Minimum_Path_Sum.py)
 - [70_Climbing_Stairs.py](/Users/bytedance/Documents/codes/dynamic_programming/70_Climbing_Stairs.py)
+- [746_Min_Cost_Climbing_Stairs.py](/Users/bytedance/Documents/codes/dynamic_programming/746_Min_Cost_Climbing_Stairs.py)
+- [509_Fibonacci_Number.py](/Users/bytedance/Documents/codes/dynamic_programming/509_Fibonacci_Number.py)
+- [1137_N-th_Tribonacci_Number.py](/Users/bytedance/Documents/codes/dynamic_programming/1137_N-th_Tribonacci_Number.py)
+- [377_Combination_Sum_IV.py](/Users/bytedance/Documents/codes/dynamic_programming/377_Combination_Sum_IV.py)
 - [72_Edit_Distance.py](/Users/bytedance/Documents/codes/dynamic_programming/72_Edit_Distance.py)
 - [139_Word_Break.py](/Users/bytedance/Documents/codes/dynamic_programming/139_Word_Break.py)
 - [198_House_Robber.py](/Users/bytedance/Documents/codes/dynamic_programming/198_House_Robber.py)

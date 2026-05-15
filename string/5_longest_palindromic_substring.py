@@ -70,27 +70,38 @@ class Solution:
         # max_i = p.index(max(p))
         # start = (max_i - p[max_i]) // 2
         # return s[start: start + p[max_i]]
+        # 在字符之间插入 #，把奇数长度和偶数长度回文统一处理。
+        # 例如 "abba" -> "#a#b#b#a#"，原串里的 "bb" 会变成以 # 为中心的奇数回文。
         t = '#' + "#".join(s) + "#"
+        # c 表示当前已知最右回文的中心，r 表示这个回文能到达的最右位置。
         c, r = 0, 0
+        # p[i] 表示在新字符串 t 中，以 i 为中心的回文半径，不包含中心点自身。
         p = [0] * len(t)
 
         for i in range(len(t)):
             if i < r:
+                # mirror 是 i 关于中心 c 的对称点。
+                # 如果 i 在当前最右回文内部，可以借助 mirror 的半径先初始化 p[i]。
                 mirror = 2 * c - i
                 p[i] = min(p[mirror], r - i)
 
+            # 在已知半径基础上继续向左右扩展。
             left, right = i - (p[i] + 1), i + (p[i] + 1)
             while left >= 0 and right < len(t) and t[left] == t[right]:
                 left -= 1
                 right += 1
                 p[i] += 1
+            # 如果以 i 为中心的回文超过了当前最右边界，就更新中心和右边界。
             if i + p[i] > r:
                 c, r = i, i + p[i]
         
+        # 找到最大回文半径所在的中心。
         max_i = p.index(max(p))
+        # 从处理后的字符串下标还原到原始字符串下标。
+        # 原始起点 = (中心位置 - 半径) // 2，原始长度 = 半径。
         start = (max_i - p[max_i]) // 2
 
-        return s[start, start + max_i]
+        return s[start: start + p[max_i]]
             
 
 if __name__ == "__main__":
