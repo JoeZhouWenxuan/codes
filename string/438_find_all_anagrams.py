@@ -18,21 +18,44 @@ from collections import Counter
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
+        # if len(s) < len(p):
+        #     return []
+
+        # need = Counter(p)
+        # remain = len(need)   # 需要满足的字符种数
+        # ans = []
+        # left = 0
+
+        # for right, ch in enumerate(s):
+        #     if ch in need:
+        #         need[ch] -= 1
+        #         if need[ch] == 0:
+        #             remain -= 1
+
+        #     # 窗口超出 p 的长度，收缩左边界
+        #     if right - left + 1 > len(p):
+        #         left_ch = s[left]
+        #         left += 1
+        #         if left_ch in need:
+        #             if need[left_ch] == 0:
+        #                 remain += 1
+        #             need[left_ch] += 1
+
+        #     if remain == 0:
+        #         ans.append(left)
+
+        # return ans
         if len(s) < len(p):
             return []
-
         need = Counter(p)
-        remain = len(need)   # 需要满足的字符种数
+        remain = len(need)
         ans = []
         left = 0
-
         for right, ch in enumerate(s):
             if ch in need:
                 need[ch] -= 1
                 if need[ch] == 0:
                     remain -= 1
-
-            # 窗口超出 p 的长度，收缩左边界
             if right - left + 1 > len(p):
                 left_ch = s[left]
                 left += 1
@@ -43,7 +66,6 @@ class Solution:
 
             if remain == 0:
                 ans.append(left)
-
         return ans
 
 

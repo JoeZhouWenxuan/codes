@@ -29,17 +29,15 @@ class Solution:
         n = len(nums)
         ans = [1] * n
         prefix = 1
-        for i in range(n):
-            ans[i] = prefix # 注意赋值答案，然后更新prefix
-            prefix *= nums[i]
-        
+        for i, num in enumerate(nums):
+            ans[i] *= prefix
+            prefix *= num
         suffix = 1
-        for i in range(n - 1, -1, -1):
+        for j in range(len(nums) - 1, -1, -1):
             ans[i] *= suffix
-            suffix *= nums[i]
-        
-        return ans
+            suffix *= nums[j]
 
+        return ans
 
 
 

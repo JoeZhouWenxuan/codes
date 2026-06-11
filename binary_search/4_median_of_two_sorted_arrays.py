@@ -75,6 +75,9 @@ class Solution:
                 left = i + 1
         return 0
     
+    '''
+    注意while的条件是left <= right
+    '''
     def f2(self, nums1, nums2):
         if len(nums1) > len(nums2):
             nums1, nums2 = nums2, nums1

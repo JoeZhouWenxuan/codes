@@ -32,26 +32,24 @@ class Solution:
         #         min_seen = nums[i]
 
         # return 0 if right == -1 else right - left + 1
-        right = -1
+        n = len(nums)
         max_seen = float('-inf')
+        min_seen = float('inf')
+        left, right = -1, -1
+
         for i, num in enumerate(nums):
-            if max_seen < num:
+            if num > max_seen:
                 max_seen = num
             else:
                 right = i
 
-        if right == -1:
-            return 0
-        
-        left = -1
-        min_seen = float('inf')
-        for i in range(len(nums) - 1, -1, -1):
-            if min_seen > nums[i]:
+        for i in range(n - 1, -1, -1):
+            if nums[i] < min_seen:
                 min_seen = nums[i]
             else:
                 left = i
-        
-        return right - left + 1
+
+        return 0 if right == -1 else right - left + 1
 
 
 

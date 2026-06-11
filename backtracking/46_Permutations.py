@@ -61,20 +61,19 @@ class Solution:
     
         ans = []
         path = []
-        used = [False] * len(nums)
-
+        visited = [False] * len(nums)
         def dfs():
             if len(path) == len(nums):
-                ans.append(path[:])
+                ans.append(path[: ])
                 return
             for i in range(len(nums)):
-                if used[i]:
+                if visited[i]:
                     continue
-                used[i] = True
                 path.append(nums[i])
+                visited[i] = True
                 dfs()
+                visited[i] = False
                 path.pop()
-                used[i] = False
         dfs()
         return ans
     

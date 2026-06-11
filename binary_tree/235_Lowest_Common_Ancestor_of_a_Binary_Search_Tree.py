@@ -30,23 +30,23 @@ class Solution:
         p: TreeNode,
         q: TreeNode,
     ) -> Optional[TreeNode]:
-        cur = root
         low = min(p.val, q.val)
         high = max(p.val, q.val)
 
-        while cur:
-            # p 和 q 都在当前节点左侧，继续去左子树找。
-            if high < cur.val:
-                cur = cur.left
-            # p 和 q 都在当前节点右侧，继续去右子树找。
-            elif low > cur.val:
-                cur = cur.right
-            else:
-                # 当前节点位于 [p, q] 之间，或者等于 p/q。
-                # 说明 p 和 q 分布在当前节点两侧，或当前节点本身就是其中一个目标节点。
-                return cur
+        if not root:
+            return None
 
-        return None
+        # p 和 q 都在当前节点左侧，最近公共祖先一定在左子树。
+        if high < root.val:
+            return self.lowestCommonAncestor(root.left, p, q)
+
+        # p 和 q 都在当前节点右侧，最近公共祖先一定在右子树。
+        if low > root.val:
+            return self.lowestCommonAncestor(root.right, p, q)
+
+        # 当前节点位于 [p, q] 之间，或者等于 p/q。
+        # 说明 p 和 q 分布在当前节点两侧，或当前节点本身就是其中一个目标节点。
+        return root
 
 
 def build_tree(values):
@@ -79,4 +79,3 @@ if __name__ == "__main__":
     root = build_tree([6, 2, 8, 0, 4, 7, 9, None, None, 3, 5])
     print(s.lowestCommonAncestor(root, find_node(root, 2), find_node(root, 8)).val)  # 6
     print(s.lowestCommonAncestor(root, find_node(root, 2), find_node(root, 4)).val)  # 2
-

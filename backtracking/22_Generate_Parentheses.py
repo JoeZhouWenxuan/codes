@@ -38,7 +38,7 @@ class Solution:
         path = []
         def dfs(left, right):
             if len(path) == 2 * n:
-                ans.append(path[:])
+                ans.append("".join(path[:]))
                 return
             if left < n:
                 path.append("(")

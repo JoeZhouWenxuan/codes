@@ -72,13 +72,13 @@ class Solution:
         # return ans
         if not digits:
             return []
-        path = []
         ans = []
+        path = []
         def dfs(index):
             if index == len(digits) - 1:
-                ans.push("".join(path))
+                ans.append("".join(path))
                 return
-            for ch in mapping[digits[index]]:
+            for i, ch in enumerate(mapping[digits[index]]):
                 path.append(ch)
                 dfs(index + 1)
                 path.pop()

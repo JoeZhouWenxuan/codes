@@ -24,7 +24,7 @@ class Solution:
         return ans
 
     def maxProfit(self, prices: List[int]) -> int:
-        min_price = float('-inf')
+        min_price = float('inf')
         ans = 0
         for p in prices:
             min_price = min(p, min_price)
